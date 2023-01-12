@@ -1,3 +1,4 @@
+/* Below is just color coordinating rows from columns, something I find easier to do when setting up a bootstrap template. These will absolutely be removed when we launch the product */
 .col, [class*="col-"] {
     border: 2px solid blue;
 }
@@ -5,3 +6,4 @@
 .row, [class*="row-"] {
     border: 2px solid red;
 }
+/* ===================================== */
