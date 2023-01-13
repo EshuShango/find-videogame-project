@@ -50,20 +50,7 @@
                     <li class="nav-item">
                       <a class="nav-link" href="#">Browse</a>
                     </li>
-                    <!-- <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                      </div>
-                    </li> -->
-                    <!-- <li class="nav-item">
-                      <a class="nav-link disabled" href="#">Disabled</a>
-                    </li> -->
+                    
                   </ul>
                 </div>
               </nav>
@@ -75,21 +62,51 @@
         <div class="row">
             <div class="col-6">   
                 <p>Col 1</p>
-                <div class="row"> <!-- subsection of Col 1-->
-                  <div class="column col-4">
-                    <p>Dropdown</p>
+                <div class="row"> <!-- subsection of Col 1-->                  
+                  <div class="col-4">                    
+                    <div class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown genreDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Genre
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Games</a>
+                        <a class="dropdown-item" href="#">Platform</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
+                    </div>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown platformDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Platform
+                    </a>
+                    
+                    
                   </div>
+                   <!-- subsection of Col 1-->
+                  <div class="col-8">
+                    <p>openspace2 What's going in here?</p>  
+                  </div>                  
                 </div>
-                <div class="row"> <!-- subsection of Col 1-->
-                  <div class="column col-8">
-                    <p>openspace</p>
-
-                  </div>
-                </div>
+                
             </div>
-
+            <!-- Col 2 -->
             <div class="col-6" id="API-response-test-section">
                 <p>Col 2</p>
+                <!-- Game entry in the scroll section -->
+                <div class="col-12 column" id="scrollingEntry">
+                  <div class="row">
+                    <div class="col-2 column" id="scrollingEntryImg">
+                      <p>image</p>
+                    </div>
+                    <div class="col-6 column" id="scrollingEntryTitle">
+                      <p>Game Title</p>
+                    </div>
+                    <div class="col-4 column" id="scrollingEntryInfo">
+                      <p>Other information</p>
+                    </div>
+                    
+                  </div>
+
+                </div>
             </div>
         </div>
     </div>
