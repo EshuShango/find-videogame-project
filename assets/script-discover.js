@@ -113,4 +113,4 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
     }   
 }
 
-document.getElementById("submit-button").addEventListener('click', fetchWithCheckBoxAndSearchBar);
+// document.getElementById("submit-button").addEventListener('click', fetchWithCheckBoxAndSearchBar);
