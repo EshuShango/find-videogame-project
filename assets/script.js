@@ -5,6 +5,7 @@ const searchBarInput = document.getElementById("search-bar-input");
 const apiTestSection = document.getElementById("API-response-test-section");
 const checkboxShooter = document.getElementById("shooter");
 const checkboxFantasy = document.getElementById("fantasy");
+const gameDisplayInformation = document.querySelectorAll(".game-display-information")
 
 const checkboxSection = document.querySelector(".checkbox-section")
 
@@ -95,7 +96,7 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
             // p.innerText = data.title;
             // apiTestSection.appendChild(p);
             generateRows +=
-            `<div class="col-4">
+            `<div class="col-4 game-display-information">
                 <a href="${data.game_url}" target="_blank">${data.title}
              </div>
             `
@@ -103,6 +104,9 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
         })
     } catch (error) {
         //Racing and zombie should throw this error
+
+        apiTestSection.innerHTML = '';
+        
         let p = document.createElement("p");
         p.innerText = `Sorry, we couldn't find a match!`;
         apiTestSection.appendChild(p);
