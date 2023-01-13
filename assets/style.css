@@ -6,4 +6,23 @@
 .row, [class*="row-"] {
     border: 2px solid red;
 }
+
+/* A class that anyone can use to make code disappear  */
+.hidden {
+    display: none;
+}
 /* ===================================== */
+
+.checkbox-section {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#API-response-test-section {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.hidden {
+    display: none;
+}
