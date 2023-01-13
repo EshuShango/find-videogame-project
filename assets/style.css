@@ -7,3 +7,13 @@
     border: 2px solid red;
 }
 /* ===================================== */
+
+.checkbox-section {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#API-response-test-section {
+    display: flex;
+    flex-wrap: wrap;
+}
