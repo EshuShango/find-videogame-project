@@ -1,11 +1,75 @@
-/* Below is just color coordinating rows from columns, something I find easier to do when setting up a bootstrap template. These will absolutely be removed when we launch the product */
+
+/* Feel free to add classes, but prioritize *ID's over classes so the default classes are not mistaken for your created class. */
+
+@import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  font-family: "Nova Square", cursive;
+}
+
+:root {
+  --hue-neutral: 150;
+}
+
+body {
+  --hue: var(--hue-neutral);
+  padding: 0;
+  margin: 0;
+  
+  width: 100vw;
+  height: 100vh;
+ 
+  background-color: hsl(var(--hue), 30%, 10%);
+}
+
+/* Below is just color coordinating rows from columns, something I find easier to do when setting up a bootstrap template. 
+These will absolutely be removed when we launch the product */
+.container {
+    width: 100%;
+    max-width: 80%;
+    background-color: white; /*turn black */
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px;
+   justify-content: center;
+   margin-left: 10%;
+  }
+
 .col, [class*="col-"] {
     border: 2px solid blue;
 }
 
 .row, [class*="row-"] {
-    border: 2px solid red;
+    border: 1px solid red;
 }
+/* This is the "Top Navigation Bar" ! */
+/* #mag-icon {
+    /* how do i put the icon within the search-bar 
+} */
+
+#search-bar {
+    box-shadow: 0 0 10px 2px;
+    border-radius: 20px 20px;
+    /* Magnigying glass not showing up ? */
+}
+
+
+/* #nav-link {
+
+}
+
+#nav-dscr {
+    
+}
+
+#nav-brws {
+
+} */
+/* ===================================== */
+
+
 
 /* A class that anyone can use to make code disappear  */
 .hidden {
@@ -16,6 +80,8 @@
 .checkbox-section {
     display: flex;
     flex-wrap: wrap;
+    margin: auto;
+   
 }
 
 #API-response-test-section {
