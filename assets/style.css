@@ -70,6 +70,11 @@ These will absolutely be removed when we launch the product */
 /* ===================================== */
 
 
+/* Scroll Entry id keep safe
+
+#scrollingEntry {
+
+} */
 
 /* A class that anyone can use to make code disappear  */
 .hidden {
