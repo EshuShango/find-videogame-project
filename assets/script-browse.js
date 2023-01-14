@@ -18,6 +18,7 @@ arrayOfGenres.sort();
 
 //Search for a game
 const getGameByName = async (event) => {
+    console.log("Second button firing")
     event.preventDefault();
 
     const options = {
@@ -30,34 +31,54 @@ const getGameByName = async (event) => {
 
     let url = `https://free-to-play-games-database.p.rapidapi.com/api/games`
 
-    let searchInput = searchBarInput.value;
+    let userInputChoiceValue = document.getElementById("search-bar").value;
+    console.log(userInputChoiceValue)
 
     try {
         response = await fetch(url, options);
         data = await response.json();
+        console.log(data)
 
         let gameInformation = '';
 
-        data.forEach(dataTitle => {
-            if (dataTitle.title === searchInput) {
-                console.log(`The game title is ${dataTitle.title}`)
-                console.log(`The short description is: ${dataTitle.short_description}`)              
-                console.log(`The game thumbnail is ${dataTitle.thumbnail}`);
+        //This is just a check to see if any day was discovered the in following forEach loop. If something was found, the count goes up. If nothing was found, the count returns to 0 and the lone if statement is fired
+        count = 0;
+
+        data.forEach(data => {
+            if (data.title === userInputChoiceValue) {
+                console.log(`The game title is ${data.title}`)
+                console.log(`The short description is: ${data.short_description}`)              
+                console.log(`The game thumbnail is ${data.thumbnail}`);
 
                 gameInformation += `
                 <div class="game-display">
-                    <img src='${dataTitle.thumbnail}' alt="image of the game searched">
-                    <p>${dataTitle.title}</p>
-                    <p>${dataTitle.short_description}</p>
+                    <img src='${data.thumbnail}' alt="image of the game searched">
+                    <p>${data.title}</p>
+                    <p>${data.short_description}</p>
                 </div>
                 `
-                apiTestSection.innerHTML = gameInformation;
-            } 
+                document.getElementById("API-response-test-section").innerHTML = gameInformation;
+                count ++;
+            }
         })
+
+        //If nothing is found in the for loop
+        if (count === 0) {
+            document.getElementById("API-response-test-section").innerHTML = ``;
+
+            document.getElementById("API-response-test-section").innerHTML = `<p>Sorry, we couldn't find a match!</p>`;
+        }
+        //The count is reset to 0 for the next search
+        count = 0;
+        
     } catch (error) {
-        console.log("This didn't work")
+        document.getElementById("API-response-test-section").innerHTML = ``;
+
+        document.getElementById("API-response-test-section").innerHTML = `<p>Sorry, we couldn't find a match!</p>`;
     }
 }
+
+document.getElementById("game-btn-submit").addEventListener('click', getGameByName)
 
 //!Generating the checkboxes for each section
 //^Generate Main category checkboxes
@@ -197,6 +218,8 @@ randomCategoryArray.forEach(random => {
 //Function to fetch a list of games with the search bar selection (browser, pc, or all) plus the checked boxes
 const fetchWithCheckBoxAndSearchBar = async (event) => {
     event.preventDefault();
+
+    document.getElementById("API-response-test-section").innerHTML = ``;
 
     //These options must be included for all API requests
     const options = {
