@@ -91,7 +91,7 @@ const typesCategoryArray = ['action', 'action-rpg',
     'shooter',       'space',
     'strategy',      'survival',
     'turn-based',    'zombie'
-  ]
+];
 
 generatedTypesCategoryCheckboxes ='';
 
@@ -112,7 +112,12 @@ typesCategoryArray.forEach(type => {
 
 //^==========Generate Multiplayer Category checkboxes ==========
 
-const multiplayerCategoryArray = ['social', 'moba', 'pvp', 'mmo', 'mmofps', 'mmotps', 'mmorts'];
+const multiplayerCategoryArray = [
+    'mmo', 'mmofps',
+    'mmorts', 'mmotps',
+    'moba',   'pvp',
+    'social'
+];
 
 generatedMultiplayerCategoryCheckboxes ='';
 
@@ -132,7 +137,14 @@ multiplayerCategoryArray.forEach(multiplayer => {
 
 
 //^============Generate POV Category Checkboxes =========
-const POVArray = ['first-person', 'third-person', 'top-down', 'side-scroller', '3d', '2d'];
+const POVArray = [
+    '2d',
+    '3d',
+    'first-person',
+    'side-scroller',
+    'third-person',
+    'top-down'
+];
 
 generatedPOVCategoryCheckboxes = '';
 
@@ -152,7 +164,18 @@ POVArray.forEach(pov => {
 
 
 //^==========Generate Random Category checkboxes==========
-const randomCategoryArray = ['pve', 'pixel', 'voxel', 'tank', 'superhero', 'permadeath', 'anime', 'military', 'tower-defense', 'horror'];
+const randomCategoryArray = [
+    'anime',
+    'horror',
+    'military',
+    'permadeath',
+    'pixel',
+    'pve',
+    'superhero',
+    'tank',
+    'tower-defense',
+    'voxel'
+];
 
 generatedRandomCategoryCheckboxes = '';
 
@@ -209,8 +232,9 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
     const checkboxValuesToAddToUrl = checkboxesAsAString.replaceAll(',', '.');
 
     //Getting the search bar value: browser, pc, or all.
-    let userInputChoice = document.getElementById("search-bar");
-    let userInputChoiceValue = userInputChoice.value;
+      // let userInputChoice = document.getElementById("search-bar");
+      let userInputChoiceValue = document.getElementById("search-bar").value;
+      console.log(`This is the userInputChoiceValue: ${userInputChoiceValue}`)
 
     //If the user doesn't push anything, the default to the search bar is "all"
     if (userInputChoiceValue === '') {
@@ -253,5 +277,5 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
     }   
 }
 
-document.getElementById("btn-browse").addEventListener('click', fetchWithCheckBoxAndSearchBar)
+document.getElementById("btn-submit").addEventListener('click', fetchWithCheckBoxAndSearchBar)
 
