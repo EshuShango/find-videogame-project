@@ -1,4 +1,4 @@
-console.log("Connection test")
+
 
 //! REQUIREMENTS FOR ANY FETCHING
 //& Options that work and are needed for any type of request
@@ -62,7 +62,7 @@ const getGameByName = async (event) => {
 //!Generating the checkboxes for each section
 //^Generate Main category checkboxes
 
-const mainCategoryArray = ['sports', 'racing', 'sailing', 'flight'];
+const mainCategoryArray = ['flight', 'racing', 'sailing', 'sports'];
 
 generatedMainCategoryCheckboxes = '';
 
@@ -83,7 +83,15 @@ mainCategoryArray.forEach(genre => {
 
 //^==========Generate Types Category checkboxes==========
 
-const typesCategoryArray = ['shooter', 'strategy', 'turn-based', 'sandbox', 'open-world', 'survival', 'zombie', 'space', 'card', 'battle-royale', 'fantasy', 'sci-fi', 'fighting', 'action-rpg', 'Action', 'martial-arts'];
+const typesCategoryArray = ['action', 'action-rpg',
+    'battle-royale', 'card',
+    'fantasy',       'fighting',
+    'martial-arts',  'open-world',
+    'sandbox',       'sci-fi',
+    'shooter',       'space',
+    'strategy',      'survival',
+    'turn-based',    'zombie'
+  ]
 
 generatedTypesCategoryCheckboxes ='';
 
@@ -167,8 +175,6 @@ randomCategoryArray.forEach(random => {
 const fetchWithCheckBoxAndSearchBar = async (event) => {
     event.preventDefault();
 
-    console.log(`function working`)
-
     //These options must be included for all API requests
     const options = {
         method: 'GET',
@@ -203,9 +209,8 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
     const checkboxValuesToAddToUrl = checkboxesAsAString.replaceAll(',', '.');
 
     //Getting the search bar value: browser, pc, or all.
-    // let userInputChoice = document.getElementById("search-bar");
-    let userInputChoiceValue = document.getElementById("search-bar").value;
-    console.log(`This is the userInputChoiceValue: ${userInputChoiceValue}`)
+    let userInputChoice = document.getElementById("search-bar");
+    let userInputChoiceValue = userInputChoice.value;
 
     //If the user doesn't push anything, the default to the search bar is "all"
     if (userInputChoiceValue === '') {
@@ -248,5 +253,5 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
     }   
 }
 
-document.getElementById("btn-submit").addEventListener('click', fetchWithCheckBoxAndSearchBar)
+document.getElementById("btn-browse").addEventListener('click', fetchWithCheckBoxAndSearchBar)
 
