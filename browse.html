@@ -26,14 +26,14 @@
       crossorigin="anonymous"
     />
     <!-- Author: Olu - Adding a reset CSS-->
-    <link rel="stylesheet" href="./assets/reset.css" />
+    <!-- <link rel="stylesheet" href="./assets/reset.css" /> -->
     <link rel="stylesheet" href="./assets/style.css" />
 
     <!-- Author: Olu - Hey this is a script file for AWESOME FONTS FontAwesome, but trying to figure why some are not showing up-->
-    <script
+    <!-- <script
       src="https://kit.fontawesome.com/e87164d213.js"
       crossorigin="anonymous"
-    ></script>
+    ></script> -->
   </head>
   <body>
     <!-- NOTES: Author: Ked
@@ -47,60 +47,52 @@
       --To avoid those dreaded merge conflicts, please only adjust code in the section you are working in. This way when we pull a new master branch, hopefully there won't be any merge conflicts.
         
         -->
+    <!--BEGIN-Con-->
     <div class="container">
-     <!-- Header/Navigation section -->
+      <!-- Header/Navigation section -->
       <div class="row">
-        <nav class="navbar navbar-expand-lg navbar-light ">
-          <!-- Search bar  -->
-            <form class="form-inline my-2 my-lg-0">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <!--Search Bar -->
+          <form class="form-inline my-2 my-lg-0">
+            <!-- Magnyfing Glass Icon needs to be within the search bar -->
+            <!-- <i class=“fa-solid fa-magnifying-glass” id=“mag-icon”></i> -->
+            <input
+              class="form-control mr-sm-2"
+              type="search"
+              placeholder="browser,pc or all?"
+              aria-label="Search"
+              id="search-bar"
+            />
+          </form>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active" id="something">
+                <a class="nav-link" id="nav-link-discover" href="./index-discover.html"
+                  >Discover <span class="sr-only">(current)</span></a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="nav-link" href="./browse.html"
+                  >Browse</a
+                >
+              </li>
 
-              <!-- Magnyfing Glass Icon needs to be within the search bar-->
-  
-              <!-- <i class="fa-solid fa-magnifying-glass" id="mag-icon"></i> -->
-  
-              <input
-                class="form-control mr-sm-2"
-                type="search"
-                placeholder="browser, pc or all?"
-                aria-label="Search"
-                id="search-bar"
-              />
-              <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="submit-button">Search</button> -->
-            </form>
-         
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+              <button id="btn-submit">Button</button>
 
-                  <button id="btn-browse">Browse</button>
+            </ul>
 
-                  <a class="nav-link" id="nav-link" id="nav-dscr" href="./index-discover.html"
-                    >Discover <span class="sr-only">(current)</span></a
-                  >
-                </li>
-                <li class="nav-item">
+          </div>
 
-
-                  <!-- <a class="nav-link" id="nav-link" id="nav-brws" href="./browse.html"
-                    >Browse</a
-                  > -->
-                </li>
-              </ul>
-            </div>
         </nav>
       </div>
     </div>
+  <!-- END-CON -->
 <!-- END of CONTAINER -->
       <div class="row">
         <div class="col-6">
           <p>Col 1</p>
           <div class="row"> <!-- subsection of Col 1-->
             <div class="col-4">
-
-
-
-
-
 
 
               <div class="main-item dropdown">

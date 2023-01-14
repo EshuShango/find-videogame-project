@@ -1,3 +1,5 @@
+console.log("Connection test")
+
 //! REQUIREMENTS FOR ANY FETCHING
 //& Options that work and are needed for any type of request
 // const options = {
@@ -165,6 +167,8 @@ randomCategoryArray.forEach(random => {
 const fetchWithCheckBoxAndSearchBar = async (event) => {
     event.preventDefault();
 
+    console.log(`function working`)
+
     //These options must be included for all API requests
     const options = {
         method: 'GET',
@@ -199,8 +203,9 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
     const checkboxValuesToAddToUrl = checkboxesAsAString.replaceAll(',', '.');
 
     //Getting the search bar value: browser, pc, or all.
-    let userInputChoice = document.getElementById("search-bar");
-    let userInputChoiceValue = userInputChoice.value;
+    // let userInputChoice = document.getElementById("search-bar");
+    let userInputChoiceValue = document.getElementById("search-bar").value;
+    console.log(`This is the userInputChoiceValue: ${userInputChoiceValue}`)
 
     //If the user doesn't push anything, the default to the search bar is "all"
     if (userInputChoiceValue === '') {
@@ -243,5 +248,5 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
     }   
 }
 
-document.getElementById("btn-browse").addEventListener('click', fetchWithCheckBoxAndSearchBar)
+document.getElementById("btn-submit").addEventListener('click', fetchWithCheckBoxAndSearchBar)
 
