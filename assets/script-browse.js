@@ -1,5 +1,3 @@
-
-
 //! REQUIREMENTS FOR ANY FETCHING
 //& Options that work and are needed for any type of request
 // const options = {
@@ -12,11 +10,10 @@
 
 // See https://rapidapi.com/digiwalls/api/free-to-play-games-database for specific url requests
 
+//This array is just an overview of all the types of games. The array that is used for the fetch requests are broken up in the section below
 const arrayOfGenres = ['shooter', 'strategy', 'moba', 'racing', 'sports', 'social', 'sandbox', 'open-world', 'survival', 'pvp', 'pve', 'pixel', 'voxel', 'zombie', 'turn-based', 'first-person', 'third-person', 'top-down', 'tank', 'space', 'sailing', 'side-scroller', 'superhero', 'permadeath', 'card', 'battle-royale', 'mmo', 'mmofps', 'mmotps', '3d', '2d', 'anime', 'fantasy', 'sci-fi', 'fighting', 'action-rpg', 'action', 'military', 'martial-arts', 'flight', 'low-spec', 'tower-defense', 'horror', 'mmorts'];
 
-arrayOfGenres.sort();
-
-//Search for a game
+//Search for a game by name
 const getGameByName = async (event) => {
     console.log("Second button firing")
     event.preventDefault();
@@ -78,7 +75,8 @@ const getGameByName = async (event) => {
     }
 }
 
-document.getElementById("game-btn-submit").addEventListener('click', getGameByName)
+//The "Find Game Name" Button
+document.getElementById("game-btn-submit").addEventListener('click', getGameByName);
 
 //!Generating the checkboxes for each section
 //^Generate Main category checkboxes
