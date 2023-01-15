@@ -60,24 +60,25 @@ const getGameByNameDebounce = async (event) => {
         //This is just a check to see if any day was discovered the in following forEach loop. If something was found, the count goes up. If nothing was found, the count returns to 0 and the lone if statement is fired
         count = 0;
 
-        data.forEach(data => {
-            if (data.title.includes(userInputChoiceValue)) {
-                console.log(`The game title is ${data.title}`)
-                console.log(`The short description is: ${data.short_description}`)              
-                console.log(`The game thumbnail is ${data.thumbnail}`);
-
-                gameInformation += `
-                <div class="game-display">
-                    <a href='${data.game_url}'><img src='${data.thumbnail}' alt="image of the game searched"></a>
-                    <a href='${data.game_url}'><p>${data.title}</p></a>
-                    <p>${data.short_description}</p>
-                </div>
-                `
-                document.getElementById("API-response-test-section").innerHTML = gameInformation;
-                count ++;
-            }
-        })
-
+        if (userInputChoiceValue !== '') {
+            data.forEach(data => {
+                if (data.title.includes(userInputChoiceValue)) {
+                    console.log(`The game title is ${data.title}`)
+                    console.log(`The short description is: ${data.short_description}`)              
+                    console.log(`The game thumbnail is ${data.thumbnail}`);
+    
+                    gameInformation += `
+                    <div class="game-display">
+                        <a href='${data.game_url}'><img src='${data.thumbnail}' alt="image of the game searched"></a>
+                        <a href='${data.game_url}'><p>${data.title}</p></a>
+                        <p>${data.short_description}</p>
+                    </div>
+                    `
+                    document.getElementById("API-response-test-section").innerHTML = gameInformation;
+                    count ++;
+                }
+            })
+        }
         //If nothing is found in the for loop
         if (count === 0) {
             document.getElementById("API-response-test-section").innerHTML = ``;
