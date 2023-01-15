@@ -1,5 +1,3 @@
-console.log("Connection test")
-
 //! REQUIREMENTS FOR ANY FETCHING
 //& Options that work and are needed for any type of request
 // const options = {
@@ -12,13 +10,32 @@ console.log("Connection test")
 
 // See https://rapidapi.com/digiwalls/api/free-to-play-games-database for specific url requests
 
+//This array is just an overview of all the types of games. The array that is used for the fetch requests are broken up in the section below
 const arrayOfGenres = ['shooter', 'strategy', 'moba', 'racing', 'sports', 'social', 'sandbox', 'open-world', 'survival', 'pvp', 'pve', 'pixel', 'voxel', 'zombie', 'turn-based', 'first-person', 'third-person', 'top-down', 'tank', 'space', 'sailing', 'side-scroller', 'superhero', 'permadeath', 'card', 'battle-royale', 'mmo', 'mmofps', 'mmotps', '3d', '2d', 'anime', 'fantasy', 'sci-fi', 'fighting', 'action-rpg', 'action', 'military', 'martial-arts', 'flight', 'low-spec', 'tower-defense', 'horror', 'mmorts'];
 
-arrayOfGenres.sort();
+//!Debounce function
+const debounce = (funcToApply) => {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+        timer = setTimeout(() => { 
+            (funcToApply).apply(this, args); 
+        }, 1000);
+    };
+  }
+const saveInput = () => {
+    // console.log(document.getElementById("search-bar").value);
+    getGameByNameDebounce();
+}
 
-//Search for a game
-const getGameByName = async (event) => {
-    event.preventDefault();
+//This is the variable you will throw in on keyup
+const processChange = debounce(() => saveInput());
+
+document.getElementById("search-bar-for-game").addEventListener('keyup', processChange);
+
+//Debounce Function
+const getGameByNameDebounce = async (event) => {
+    console.log("Debounce function firing")
 
     const options = {
         method: 'GET',
@@ -30,39 +47,58 @@ const getGameByName = async (event) => {
 
     let url = `https://free-to-play-games-database.p.rapidapi.com/api/games`
 
-    let searchInput = searchBarInput.value;
+    let userInputChoiceValue = document.getElementById("search-bar-for-game").value;
+    console.log(userInputChoiceValue)
 
     try {
         response = await fetch(url, options);
         data = await response.json();
+        console.log(data)
 
         let gameInformation = '';
 
-        data.forEach(dataTitle => {
-            if (dataTitle.title === searchInput) {
-                console.log(`The game title is ${dataTitle.title}`)
-                console.log(`The short description is: ${dataTitle.short_description}`)              
-                console.log(`The game thumbnail is ${dataTitle.thumbnail}`);
+        //This is just a check to see if any day was discovered the in following forEach loop. If something was found, the count goes up. If nothing was found, the count returns to 0 and the lone if statement is fired
+        count = 0;
+
+        data.forEach(data => {
+            if (data.title.includes(userInputChoiceValue)) {
+                console.log(`The game title is ${data.title}`)
+                console.log(`The short description is: ${data.short_description}`)              
+                console.log(`The game thumbnail is ${data.thumbnail}`);
 
                 gameInformation += `
                 <div class="game-display">
-                    <img src='${dataTitle.thumbnail}' alt="image of the game searched">
-                    <p>${dataTitle.title}</p>
-                    <p>${dataTitle.short_description}</p>
+                    <a href='${data.game_url}'><img src='${data.thumbnail}' alt="image of the game searched"></a>
+                    <a href='${data.game_url}'><p>${data.title}</p></a>
+                    <p>${data.short_description}</p>
                 </div>
                 `
-                apiTestSection.innerHTML = gameInformation;
-            } 
+                document.getElementById("API-response-test-section").innerHTML = gameInformation;
+                count ++;
+            }
         })
+
+        //If nothing is found in the for loop
+        if (count === 0) {
+            document.getElementById("API-response-test-section").innerHTML = ``;
+
+            document.getElementById("API-response-test-section").innerHTML = `<p>Sorry, we couldn't find a match!</p>`;
+        }
+        //The count is reset to 0 for the next search
+        count = 0;
+        
     } catch (error) {
-        console.log("This didn't work")
+        document.getElementById("API-response-test-section").innerHTML = ``;
+
+        document.getElementById("API-response-test-section").innerHTML = `<p>Sorry, we couldn't find a match!</p>`;
     }
 }
+
 
 //!Generating the checkboxes for each section
 //^Generate Main category checkboxes
 
-const mainCategoryArray = ['sports', 'racing', 'sailing', 'flight'];
+const mainCategoryArray = ['flight', 'racing', 'sailing', 'sports'];
 
 generatedMainCategoryCheckboxes = '';
 
@@ -83,7 +119,15 @@ mainCategoryArray.forEach(genre => {
 
 //^==========Generate Types Category checkboxes==========
 
-const typesCategoryArray = ['shooter', 'strategy', 'turn-based', 'sandbox', 'open-world', 'survival', 'zombie', 'space', 'card', 'battle-royale', 'fantasy', 'sci-fi', 'fighting', 'action-rpg', 'Action', 'martial-arts'];
+const typesCategoryArray = ['action', 'action-rpg',
+    'battle-royale', 'card',
+    'fantasy',       'fighting',
+    'martial-arts',  'open-world',
+    'sandbox',       'sci-fi',
+    'shooter',       'space',
+    'strategy',      'survival',
+    'turn-based',    'zombie'
+];
 
 generatedTypesCategoryCheckboxes ='';
 
@@ -104,7 +148,12 @@ typesCategoryArray.forEach(type => {
 
 //^==========Generate Multiplayer Category checkboxes ==========
 
-const multiplayerCategoryArray = ['social', 'moba', 'pvp', 'mmo', 'mmofps', 'mmotps', 'mmorts'];
+const multiplayerCategoryArray = [
+    'mmo', 'mmofps',
+    'mmorts', 'mmotps',
+    'moba',   'pvp',
+    'social'
+];
 
 generatedMultiplayerCategoryCheckboxes ='';
 
@@ -124,7 +173,14 @@ multiplayerCategoryArray.forEach(multiplayer => {
 
 
 //^============Generate POV Category Checkboxes =========
-const POVArray = ['first-person', 'third-person', 'top-down', 'side-scroller', '3d', '2d'];
+const POVArray = [
+    '2d',
+    '3d',
+    'first-person',
+    'side-scroller',
+    'third-person',
+    'top-down'
+];
 
 generatedPOVCategoryCheckboxes = '';
 
@@ -144,7 +200,18 @@ POVArray.forEach(pov => {
 
 
 //^==========Generate Random Category checkboxes==========
-const randomCategoryArray = ['pve', 'pixel', 'voxel', 'tank', 'superhero', 'permadeath', 'anime', 'military', 'tower-defense', 'horror'];
+const randomCategoryArray = [
+    'anime',
+    'horror',
+    'military',
+    'permadeath',
+    'pixel',
+    'pve',
+    'superhero',
+    'tank',
+    'tower-defense',
+    'voxel'
+];
 
 generatedRandomCategoryCheckboxes = '';
 
@@ -167,7 +234,7 @@ randomCategoryArray.forEach(random => {
 const fetchWithCheckBoxAndSearchBar = async (event) => {
     event.preventDefault();
 
-    console.log(`function working`)
+    document.getElementById("API-response-test-section").innerHTML = ``;
 
     //These options must be included for all API requests
     const options = {
@@ -203,9 +270,9 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
     const checkboxValuesToAddToUrl = checkboxesAsAString.replaceAll(',', '.');
 
     //Getting the search bar value: browser, pc, or all.
-    // let userInputChoice = document.getElementById("search-bar");
-    let userInputChoiceValue = document.getElementById("search-bar").value;
-    console.log(`This is the userInputChoiceValue: ${userInputChoiceValue}`)
+      // let userInputChoice = document.getElementById("search-bar");
+      let userInputChoiceValue = document.getElementById("search-bar").value;
+      console.log(`This is the userInputChoiceValue: ${userInputChoiceValue}`)
 
     //If the user doesn't push anything, the default to the search bar is "all"
     if (userInputChoiceValue === '') {
@@ -217,19 +284,24 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
         response = await fetch(`https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=${checkboxValuesToAddToUrl}&platform=${userInputChoiceValue}`, options);
         data = await response.json();
         console.log(data);
+        // console.log(data.thumbnail)
 
         //^Generate the rectangles for each game
         generateGameRow = '';
 
         data.forEach(data => {
+            console.log(data.title)
+            console.log(data.thumbnail)
+            console.log(data.short_description)
+            
             generateGameRow += `
             <div class="row">
                 <div class="col column" id="scrollingEntryImg">
-                    <img src='${data.thumbnail}'>
+                    <a href='${data.game_url}'><img src='${data.thumbnail}' alt="image of the game searched"></a>
                 </div>
 
                 <div class="col column" id="scrollingEntryTitle">
-                    <p>${data.title}<p/>
+                <a href='${data.game_url}'><p>${data.title}</p></a>
                 </div>
 
                 <div class="col column" id="scrollingEntryInfo">
@@ -237,14 +309,15 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
                 </div>
             </div>
             `
-            document.getElementById("scrollingEntry").innerHTML = generateGameRow;
+            document.getElementById("API-response-test-section").innerHTML = generateGameRow;
+        //     console.log(generateGameRow)
         })
 
     } catch (error) {
         //Racing and sailing should throw this error for testing purposes
-        document.getElementById("scrollingEntry").innerHTML = ``;
+        document.getElementById("API-response-test-section").innerHTML = ``;
 
-        document.getElementById("scrollingEntry").innerHTML = `<p>Sorry, we couldn't find a match!</p>`;
+        document.getElementById("API-response-test-section").innerHTML = `<p>Sorry, we couldn't find a match!</p>`;
     }   
 }
 
