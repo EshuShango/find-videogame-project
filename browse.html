@@ -79,7 +79,23 @@
 
               <button id="btn-submit">Search</button>
 
-              <button id="game-btn-submit">Find Game Name</button>
+              <!-- <button id="game-btn-submit">Find Game Name</button> -->
+              <!-- The second search bar is find any game by name -->
+              <form class="form-inline my-2 my-lg-0">
+                <!-- Magnyfing Glass Icon needs to be within the search bar -->
+                <!-- <i class=“fa-solid fa-magnifying-glass” id=“mag-icon”></i> -->
+                <input
+                  class="form-control mr-sm-2"
+                  type="search"
+                  placeholder="Type any name..."
+                  aria-label="Search"
+                  id="search-bar-for-game"
+                />
+              </form>
+
+              <div id="debounce-section">
+
+              </div>
 
 
             </ul>
@@ -167,13 +183,15 @@
                <!-- Game entry in the scroll section -->
                <div class="col-8 column" id="scrollingEntry">
 
+               </div>
+
                  <div class="col-4 column" id="scrollBar scrollingEntryBar">
                    <!-- <p>scroll bar</p> -->
                  </div>
-               </div>
+
            </div>
        </div>
-     </div>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
