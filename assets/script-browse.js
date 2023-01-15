@@ -33,7 +33,8 @@ const processChange = debounce(() => saveInput());
 
 document.getElementById("search-bar-for-game").addEventListener('keyup', processChange);
 
-//Debounce Function
+
+//Debounce Function With User Input
 const getGameByNameDebounce = async (event) => {
     console.log("Debounce function firing")
 
@@ -60,24 +61,25 @@ const getGameByNameDebounce = async (event) => {
         //This is just a check to see if any day was discovered the in following forEach loop. If something was found, the count goes up. If nothing was found, the count returns to 0 and the lone if statement is fired
         count = 0;
 
-        data.forEach(data => {
-            if (data.title.includes(userInputChoiceValue)) {
-                console.log(`The game title is ${data.title}`)
-                console.log(`The short description is: ${data.short_description}`)              
-                console.log(`The game thumbnail is ${data.thumbnail}`);
-
-                gameInformation += `
-                <div class="game-display">
-                    <a href='${data.game_url}'><img src='${data.thumbnail}' alt="image of the game searched"></a>
-                    <a href='${data.game_url}'><p>${data.title}</p></a>
-                    <p>${data.short_description}</p>
-                </div>
-                `
-                document.getElementById("API-response-test-section").innerHTML = gameInformation;
-                count ++;
-            }
-        })
-
+        if (userInputChoiceValue !== '') {
+            data.forEach(data => {
+                if (data.title.includes(userInputChoiceValue)) {
+                    console.log(`The game title is ${data.title}`)
+                    console.log(`The short description is: ${data.short_description}`)              
+                    console.log(`The game thumbnail is ${data.thumbnail}`);
+    
+                    gameInformation += `
+                    <div class="game-display">
+                        <a href='${data.game_url}'><img src='${data.thumbnail}' alt="image of the game searched"></a>
+                        <a href='${data.game_url}'><p>${data.title}</p></a>
+                        <p>${data.short_description}</p>
+                    </div>
+                    `
+                    document.getElementById("API-response-test-section").innerHTML = gameInformation;
+                    count ++;
+                }
+            })
+        }
         //If nothing is found in the for loop
         if (count === 0) {
             document.getElementById("API-response-test-section").innerHTML = ``;
@@ -265,7 +267,7 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
     //I make the list of checkbox values into a string
     const checkboxesAsAString = finalCheckboxesArray.toString();
 
-    //Due to commas seperating each item in the string, I replace all the commas with a '.'
+    //Due to commas separating each item in the string, I replace all the commas with a '.'
     //The remaining string is now ready to be passing into the fetch URL
     const checkboxValuesToAddToUrl = checkboxesAsAString.replaceAll(',', '.');
 
@@ -279,47 +281,55 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
         userInputChoiceValue = 'all';
     }
 
-    //Where the magic happens
-    try {
-        response = await fetch(`https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=${checkboxValuesToAddToUrl}&platform=${userInputChoiceValue}`, options);
-        data = await response.json();
-        console.log(data);
-        // console.log(data.thumbnail)
-
-        //^Generate the rectangles for each game
-        generateGameRow = '';
-
-        data.forEach(data => {
-            console.log(data.title)
-            console.log(data.thumbnail)
-            console.log(data.short_description)
-            
-            generateGameRow += `
-            <div class="row">
-                <div class="col column" id="scrollingEntryImg">
-                    <a href='${data.game_url}'><img src='${data.thumbnail}' alt="image of the game searched"></a>
-                </div>
-
-                <div class="col column" id="scrollingEntryTitle">
-                <a href='${data.game_url}'><p>${data.title}</p></a>
-                </div>
-
-                <div class="col column" id="scrollingEntryInfo">
-                    <p>${data.short_description}</p>
-                </div>
-            </div>
-            `
-            document.getElementById("API-response-test-section").innerHTML = generateGameRow;
-        //     console.log(generateGameRow)
-        })
-
-    } catch (error) {
-        //Racing and sailing should throw this error for testing purposes
+    if (checkboxValuesToAddToUrl === '') {
         document.getElementById("API-response-test-section").innerHTML = ``;
 
-        document.getElementById("API-response-test-section").innerHTML = `<p>Sorry, we couldn't find a match!</p>`;
-    }   
-}
+        document.getElementById("API-response-test-section").innerHTML = `<p>Please select at least one checkbox option, or search for a title by name in the second search bar</p>`;
+    } else {
+        try {
+            response = await fetch(`https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=${checkboxValuesToAddToUrl}&platform=${userInputChoiceValue}`, options);
+            data = await response.json();
+            console.log(data);
+            // console.log(data.thumbnail)
+    
+            //^Generate the rectangles for each game
+            generateGameRow = '';
+    
+            data.forEach(data => {
+                console.log(data.title)
+                console.log(data.thumbnail)
+                console.log(data.short_description)
+                
+                generateGameRow += `
+                <div class="row">
+                    <div class="col column" id="scrollingEntryImg">
+                        <a href='${data.game_url}'><img src='${data.thumbnail}' alt="image of the game searched"></a>
+                    </div>
+    
+                    <div class="col column" id="scrollingEntryTitle">
+                    <a href='${data.game_url}'><p>${data.title}</p></a>
+                    </div>
+    
+                    <div class="col column" id="scrollingEntryInfo">
+                        <p>${data.short_description}</p>
+                    </div>
+                </div>
+                `
+                document.getElementById("API-response-test-section").innerHTML = generateGameRow;
+            //     console.log(generateGameRow)
+            })
+    
+        } catch (error) {
+            //Racing and sailing should throw this error for testing purposes
+            document.getElementById("API-response-test-section").innerHTML = ``;
+    
+            document.getElementById("API-response-test-section").innerHTML = `<p>Sorry, we couldn't find a match!</p>`;
+        }   
+    
+    }
+
+    //Where the magic happens
+    }
 
 document.getElementById("btn-submit").addEventListener('click', fetchWithCheckBoxAndSearchBar)
 
