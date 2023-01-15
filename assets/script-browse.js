@@ -13,68 +13,6 @@
 //This array is just an overview of all the types of games. The array that is used for the fetch requests are broken up in the section below
 const arrayOfGenres = ['shooter', 'strategy', 'moba', 'racing', 'sports', 'social', 'sandbox', 'open-world', 'survival', 'pvp', 'pve', 'pixel', 'voxel', 'zombie', 'turn-based', 'first-person', 'third-person', 'top-down', 'tank', 'space', 'sailing', 'side-scroller', 'superhero', 'permadeath', 'card', 'battle-royale', 'mmo', 'mmofps', 'mmotps', '3d', '2d', 'anime', 'fantasy', 'sci-fi', 'fighting', 'action-rpg', 'action', 'military', 'martial-arts', 'flight', 'low-spec', 'tower-defense', 'horror', 'mmorts'];
 
-//Search for a game by name
-// const getGameByName = async (event) => {
-//     console.log("Second button firing")
-//     event.preventDefault();
-
-//     const options = {
-//         method: 'GET',
-//         headers: {
-//             'X-RapidAPI-Key': '5353e51751msha2b28d9e3384746p1a9b44jsne8dbb6955924',
-//             'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
-//         }
-//     }
-
-//     let url = `https://free-to-play-games-database.p.rapidapi.com/api/games`
-
-//     let userInputChoiceValue = document.getElementById("search-bar").value;
-//     console.log(userInputChoiceValue)
-
-//     try {
-//         response = await fetch(url, options);
-//         data = await response.json();
-//         console.log(data)
-
-//         let gameInformation = '';
-
-//         //This is just a check to see if any day was discovered the in following forEach loop. If something was found, the count goes up. If nothing was found, the count returns to 0 and the lone if statement is fired
-//         count = 0;
-
-//         data.forEach(data => {
-//             if (data.title === userInputChoiceValue) {
-//                 console.log(`The game title is ${data.title}`)
-//                 console.log(`The short description is: ${data.short_description}`)              
-//                 console.log(`The game thumbnail is ${data.thumbnail}`);
-
-//                 gameInformation += `
-//                 <div class="game-display">
-//                     <img src='${data.thumbnail}' alt="image of the game searched">
-//                     <p>${data.title}</p>
-//                     <p>${data.short_description}</p>
-//                 </div>
-//                 `
-//                 document.getElementById("API-response-test-section").innerHTML = gameInformation;
-//                 count ++;
-//             }
-//         })
-
-//         //If nothing is found in the for loop
-//         if (count === 0) {
-//             document.getElementById("API-response-test-section").innerHTML = ``;
-
-//             document.getElementById("API-response-test-section").innerHTML = `<p>Sorry, we couldn't find a match!</p>`;
-//         }
-//         //The count is reset to 0 for the next search
-//         count = 0;
-        
-//     } catch (error) {
-//         document.getElementById("API-response-test-section").innerHTML = ``;
-
-//         document.getElementById("API-response-test-section").innerHTML = `<p>Sorry, we couldn't find a match!</p>`;
-//     }
-// }
-
 //!Debounce function
 const debounce = (funcToApply) => {
     let timer;
@@ -95,11 +33,7 @@ const processChange = debounce(() => saveInput());
 
 document.getElementById("search-bar-for-game").addEventListener('keyup', processChange);
 
-
-//!========================================================================
-//!===============TESTING DEBOUNCE FUNCTION COPY===========================
-//!========================================================================
-
+//Debounce Function
 const getGameByNameDebounce = async (event) => {
     console.log("Debounce function firing")
 
@@ -160,13 +94,6 @@ const getGameByNameDebounce = async (event) => {
     }
 }
 
-//!========================================================================
-//!========================================================================
-
-
-
-//The "Find Game Name" Button
-// document.getElementById("game-btn-submit").addEventListener('click', getGameByName);
 
 //!Generating the checkboxes for each section
 //^Generate Main category checkboxes
