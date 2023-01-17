@@ -273,7 +273,6 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
     const checkboxValuesToAddToUrl = checkboxesAsAString.replaceAll(',', '.');
 
     //Getting the search bar value: browser, pc, or all.
-      // let userInputChoice = document.getElementById("search-bar");
       let userInputChoiceValue = document.getElementById("search-bar").value;
       console.log(`This is the userInputChoiceValue: ${userInputChoiceValue}`)
 
@@ -387,13 +386,6 @@ const addToHistory = () => {
 
 
         localStorage.setItem("History", JSON.stringify(localStorageHistory))
-
-        //!Add an event listener for any of those history buttons so when they are clicked on, they can send the user to that page
-        
-        arrayOfAnchorTagsForHistory.addEventListener('click', (event) => {
-            event.preventDefault();
-        })
-
     }
 };
 
