@@ -134,7 +134,7 @@ const typesCategoryArray = ['action', 'action-rpg',
 generatedTypesCategoryCheckboxes ='';
 
 typesCategoryArray.forEach(type => {
-  console.log("Checked box check")
+  // console.log("Checked box check")
     generatedTypesCategoryCheckboxes += `
     <li>
         <a class="dropdown-item" href="#">
@@ -302,6 +302,7 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
                 console.log(data.short_description)
                 
                 generateGameRow += `
+               
                 <div class="row">
                     <div class="col column" id="scrollingEntryImg">
                         <a href='${data.game_url}'><img src='${data.thumbnail}' alt="image of the game searched"></a>
@@ -315,6 +316,7 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
                         <p>${data.short_description}</p>
                     </div>
                 </div>
+                
                 `
                 document.getElementById("API-response-test-section").innerHTML = generateGameRow;
                 console.log(generateGameRow)
