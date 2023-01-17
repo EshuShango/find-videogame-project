@@ -13,7 +13,7 @@
 //This array is just an overview of all the types of games. The array that is used for the fetch requests are broken up in the section below
 const arrayOfGenres = ['shooter', 'strategy', 'moba', 'racing', 'sports', 'social', 'sandbox', 'open-world', 'survival', 'pvp', 'pve', 'pixel', 'voxel', 'zombie', 'turn-based', 'first-person', 'third-person', 'top-down', 'tank', 'space', 'sailing', 'side-scroller', 'superhero', 'permadeath', 'card', 'battle-royale', 'mmo', 'mmofps', 'mmotps', '3d', '2d', 'anime', 'fantasy', 'sci-fi', 'fighting', 'action-rpg', 'action', 'military', 'martial-arts', 'flight', 'low-spec', 'tower-defense', 'horror', 'mmorts'];
 
-//!Debounce function
+//!Debounce function for the second search bar
 const debounce = (funcToApply) => {
     let timer;
     return (...args) => {
@@ -286,6 +286,7 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
 
         document.getElementById("API-response-test-section").innerHTML = `<p>Please select at least one checkbox option, or search for a title by name in the second search bar</p>`;
     } else {
+        //Where the magic happens
         try {
             response = await fetch(`https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=${checkboxValuesToAddToUrl}&platform=${userInputChoiceValue}`, options);
             data = await response.json();
@@ -323,12 +324,10 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
             //Racing and sailing should throw this error for testing purposes
             document.getElementById("API-response-test-section").innerHTML = ``;
     
-            document.getElementById("API-response-test-section").innerHTML = `<p>Sorry, we couldn't find a match!</p>`;
+            document.getElementById("API-response-test-section").innerHTML = `<p>Sorry, the checkboxes you chose did not bring back any matches! Try selecting different checkboxes</p>`;
         }   
     
     }
-
-    //Where the magic happens
     }
 
 document.getElementById("btn-submit").addEventListener('click', fetchWithCheckBoxAndSearchBar)
