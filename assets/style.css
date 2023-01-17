@@ -289,8 +289,14 @@ img {
     border-style: inset;
 }
 
-.thumbnail-image{
-    width: 50%;
+.search-row:hover{
+    transition-duration: 0.4s;
+    background-color: rgb(70, 70, 70);
+}
+
+.scrolling-entry-title{
+    color: white;
+    font-size: 1.5rem;
 }
 
 
