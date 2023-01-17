@@ -10,83 +10,269 @@
 }
 
 :root {
-  --hue-neutral: 150;
+  --hue-neutral: 300;
 }
 
 body {
   --hue: var(--hue-neutral);
   padding: 0;
   margin: 0;
-  
   width: 100vw;
   height: 100vh;
- 
-  background-color: hsl(var(--hue), 30%, 10%);
+  background-color: hsl(var(--hue), 20%, 5%);
 }
+/* #hero {
+width: 300px;  
+height: auto;  
+text-align: center;  
+padding: 5px; 
+} */
 
-/* Below is just color coordinating rows from columns, something I find easier to do when setting up a bootstrap template. 
-These will absolutely be removed when we launch the product */
-.container {
+.discover-page{
+    margin: 2%; 
+    padding: 10px;
+    padding-left: 45px;
+    /* background-color: red; */
+    justify-content: center;
+    
+}
+.main-discover{
+    border-radius: 15px 15px 15px 15px; 
+    max-width: 100%;  
+}
+/* .switch-clickers {
+    width: 200px;
+    width: 90%;
+} */
+/* .carousel-indicators{
+    border-color: red;
+    background-color: red;
+} */
+
+/* .carousel-slide {
+    border-color: red;
+} */
+
+/* .carousel-inner {
+   display: inline;
+} */
+.container-box {
     width: 100%;
     max-width: 80%;
-    background-color: white; /*turn black */
-    border-radius: 5px;
-    padding: 10px;
-    box-shadow: 0 0 10px 2px;
+    background-color: none; 
+    /* border-radius: 5px; */
+    /* box-shadow: 0 0 10px 2px; */
+    padding: 5px;
    justify-content: center;
    margin-left: 10%;
+   margin-bottom: 10px;
   }
 
-.col, [class*="col-"] {
-    border: 2px solid blue;
-}
+  .main-link, .nav-link {
+    color: whitesmoke;
+    
+  }
+  .main-link:hover, .nav-link:hover {
+    color: black;
+  }
+  #nav-link-discover, #nav-link-browser {
+    color: whitesmoke;
+    
+  }
 
-.row, [class*="row-"] {
-    border: 1px solid red;
-}
+   #nav-link-discover:hover, #nav-link-browser:hover {
+    color:rgb(32, 32, 32);
+    transition: 0.2s;
+  }
 /* This is the "Top Navigation Bar" ! */
 /* #mag-icon {
     /* how do i put the icon within the search-bar 
 } */
+.side-panel {
+    
+    height: 50px;
+    width: 100px;
+    border-radius: 10px 10px 10px 10px;
+    border-color: blue;
+    margin-left: 75%;
+    /* box-shadow: 5px 1px; */
+    border-style: dashed;
+    line-height: 1;
+    /* justify-content: center; */
+    
 
-#search-bar {
-    box-shadow: 0 0 10px 2px;
-    border-radius: 20px 20px;
-    /* Magnigying glass not showing up ? */
-}
-
-
-/* #nav-link {
-
-}
-
-#nav-dscr {
     
 }
 
-#nav-brws {
+img {
+    margin: auto;
+    margin-right: 25px;
+    border-radius: 10px 10px 10px 10px;
+    /* border-color: red; */
+    /* box-shadow: 10px 5px 10px 5px; */
+    border-style:dashed;
+    line-height: 1;
+}
 
+#search-bar {
+    /* box-shadow: 0 0 5px 1px; */
+    border-radius: 20px 20px; 
+    /* border-color: rgba(0, 0, 0, 0); */
+    margin: 0;
+    border: 0;
+    padding: 2px;
+    padding-left: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    white-space: normal;
+    background: none;
+    line-height: 1.5;
+    font-weight: 400;
+    font-display: swap;
+    position: relative;
+    text-align: start;
+    position: relative;
+    color: rgb(245, 245, 245);
+    background-color: rgb(32, 32, 32);
+    
+    /* Magnigying glass not showing up ? */
+  
+}
+#search-bar2 {
+    margin: 0;
+    border: 0;
+    padding: 5px;
+    padding-left: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    white-space: normal;
+    background: none;
+    line-height: 1.5;
+    margin-right: 10px ;
+    margin-bottom: 5px;
+    justify-content: center;
+    font-weight: 400;
+    font-display: swap;
+    position: relative;
+    text-align: start;
+    position: relative;
+    color: rgb(245, 245, 245);
+    background-color: rgb(32, 32, 32);
+    /* appearance: auto; */
+    /* Magnigying glass not showing up ? */
+    /* outline: 0;
+    outline-color: initial;
+    outline-style: initial;
+    outline-width: 0px; */
+}
+/* .src-color {
+    background-color: rgb(32, 32, 32);
 } */
+#btn-submit-search {
+    color: white;
+    background-color: rgb(8, 8, 8);
+    border-color: rgba(0, 0, 0, 0);
+    box-shadow: 0 0 .5px .2px;
+    border-radius: 5px 5px;
+    font-size: .75rem;
+    margin: 10px 65% 5px 5px;
+    /* margin-right: 50%;
+    margin-bottom: 5px;
+    margin-top: 5px; */
+    
+    /* Magnigying glass not showing up ? */
+}
+#btn-submit-search:hover{
+    transition: ease-in-out;
+    border-color: rgb(175, 175, 175);
+    box-shadow: none;
+    color: white;
+}
+
+#search-bar-for-game {
+    outline: 0;
+    outline-color: initial;
+    outline-style: initial;
+    outline-width: px;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
+    white-space: normal;
+    background: none;
+    line-height: 1;
+    font-family: Inter,sans-serif;
+    font-weight: 400;
+    font-display: swap;
+    position: relative;
+    text-align: start;
+    /* appearance: auto; */
+
+}
+
+
 /* ===================================== */
 
 
-/* Scroll Entry id keep safe
+/* Scroll Entry id keep safe */
 
-#scrollingEntry {
 
-} */
 
+#scroll-card {
+    background-color: red;
+    width: 100%;
+    /* max-width: 90%; */
+}
 /* A class that anyone can use to make code disappear  */
 .hidden {
     display: none;
 }
 /* ===================================== */
 
+#aside-container{
+    /* background-color: blue; */
+    border-radius: 5px;
+    /* box-shadow: 0 0 1.5px .5px; */
+    padding: 10px;
+   justify-content: center;
+    margin-left: 15px;
+  
+   
+}
+#aside-box {
+    /* border-radius: 5px;
+    box-shadow: 0 0 10px 2px; */
+    padding: 10px;
+    
+   justify-content: center;
+   margin-left: 5%;
+   /* background-color: white; */
+   /* background-color: blue; */
+}
+.cat-box {
+    /* box-shadow: 0 0 1.5px .5px; */
+    border-radius: 5px 5px;
+    background-color: none;
+    margin-left: 5%;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .checkbox-section {
     display: flex;
     flex-wrap: wrap;
     margin: auto;
    
+}
+.game-display {
+     box-shadow: 0 0 1.5px .5px;
+     border-radius: 5px 5px;
+     background-color: white;
+     display: flex;
+     flex-wrap: wrap;
+     margin: auto;
 }
 
 #API-response-test-section {

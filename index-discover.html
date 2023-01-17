@@ -1,33 +1,32 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>Video Game Finder</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
+<head>
+  <title>Video Game Finder</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src=./assets/script-discover.js></script>
+  <!-- Author: Olu - adding main js file ?-->
+  <script src="./assets/script.js"></script>
+  <!--Author: Lon -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
 
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-    
-    <!--Author: Lon -->
-    <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-    crossorigin="anonymous"
-  />
-    <link rel="stylsheet" href="./assets/reset.css" />
-    <link rel="stylesheet" href="./assets/style.css" />
-
-     <!-- Author: Olu - Hey this is a script file for AWESOME FONTS FontAwesome, but trying to figure why some are not showing up-->
-     <script
-     src="https://kit.fontawesome.com/e87164d213.js"
-     crossorigin="anonymous"
-   ></script>
-  </head>
-  <body>
-     <!-- NOTES: Author: Ked
+<body>
+  <!-- NOTES: Author: Ked
       Hey everyone! Use the link below for the blueprint of all the Bootstrap layout components! This is also a link to their documentation for any extra information. PLEASE feel free to copy and paste any code you find on the bootstrap website.
               https://getbootstrap.com/docs/4.0/getting-started/browsers-devices/#browser-zooming 
 
@@ -38,68 +37,119 @@
       --To avoid those dreaded merge conflicts, please only adjust code in the section you are working in. This way when we pull a new master branch, hopefully there won't be any merge conflicts.
         
         -->
-    <div class="container">
-      <!-- Header/Navigation section -->
-      <div class="row">
-        <nav class="navbar navbar-expand-lg navbar-light">
+  <!--BEGIN-Con-->
+  <div class="container-box">
+    <!-- Header/Navigation section -->
+    <div class="row">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <!--Search Bar -->
+        <form class="form-inline my-2 my-lg-0">
+          <!-- Magnyfing Glass Icon needs to be within the search bar -->
+          <!-- <i class=“fa-solid fa-magnifying-glass” id=“mag-icon”></i> -->
 
-          <!--Search Bar -->
-          <!-- <form class="form-inline my-2 my-lg-0">
+          <div class="search-con">
 
-            Magnyfing Glass Icon needs to be within the search bar
-
-            <i class="fa-solid fa-magnifying-glass" id="mag-icon"></i>
-
-            <input
-              class="form-control mr-sm-2"
-              type="search"
-              placeholder="browser, pc or all?"
-              aria-label="Search"
-              id="search-bar"
-            />
-          </form> -->
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" id="nav-link" id="nav-discover-dscr" href="./index-discover.html"
-                  >Discover <span class="sr-only">(current)</span></a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="nav-link2" id="nav-discover-brws" href="./browse.html"
-                  >Browse</a
-                >
-              </li>
-            </ul>
+            <input class="form-control mr-sm-2" type="search" placeholder="browser,pc or all?" aria-label="Search"
+              id="search-bar" />
           </div>
-        </nav>
+        </form>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active" id="something">
+              <a class="nav-link" id="nav-link-discover" href="./index-discover.html">Discover <span
+                  class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-link-browser" href="./browse.html">Browse</a>
+            </li>
+
+            <div id="debounce-section"></div>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+
+  <!-- <div class="hero"> -->
+    <div class="row col-4 side-panel">
+
+    </div>
+
+  <div class="discover page">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active" id="something">
+          <a class="nav-link" id="nav-link-discover" href="./index-discover.html">Discover <span
+              class="sr-only"></span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="nav-link-browser" href="./browse.html">Browse</a>
+        </li>
+
+        <div id="debounce-section"></div>
+      </ul>
+    </div>
+    </nav>
+  </div>
+  </div>
+
+
+  <!-- <div class="hero"> -->
+  <div class="col-8  discover-page">
+    <div class="row text-center main-discover" class="game-display-information" id="carousel-ex" class="carousel-slide"
+      data-ride="carousel">
+      <!-- Begining-Slider-pic -->
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <!-- END-Slider-pic -->
+
+      <div class="carousel-inner">
+
+        <div class="carousel-item active">
+
+          <h1>First slide</h1>
+          <img class="d-block w-100" src="./assets/Quiz-04.png" alt="First slide"/>
+        </div>
+        <div class="carousel-item">
+
+          <h1>Second slide</h1>
+          <img class="d-block w-100" src="./assets/Quiz-04.png" alt="Second slide"/>
+        </div>
+        <div class="carousel-item">
+
+          <h1>Third slide</h1>
+          <img class="d-block w-100" src="./assets/Quiz-04.png" alt="Third slide"/>
+        </div>
+
+        <div class="switch-clickers">
+           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+        </div>
+  
       </div>
     </div>
-  <!-- END of CONTAINER -->
+  </div>
 
-<div class=" row text-center">
-<h1 class="col-8 border">Hero slider</h1>
-<h1 class="col-4 border center">Image roller</h1>
-</div>
+  <!-- Side panels: Optional - could add for RoadMap ? -->
+ 
 
 
+  <!-- </div> -->
+  <!-- <div class=" row text-center main-discover">
+  <h1 class="col-4 border center">Image roller</h1>
+  </div> -->
+</body>
 
-
-
-
-
-
-
-
-      
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src=./assets/script-discover.js></script>
-    <!-- Author: Olu - adding main js file ?-->
-    <script src="./assets/script.js"></script>
-  </body>
 </html>
