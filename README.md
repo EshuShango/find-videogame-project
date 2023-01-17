@@ -26,12 +26,12 @@ Create our own app and meet project requirements !
 ## Sources
 
 ## Team 
-- [https://github.com/AlexGriffitts](Alex Griffitts)
+- [https://github.com/AlexGriffitts](https://github.com/AlexGriffitts)
 
-- [https://github.com/lonHeligas](Lon Heligas)
+- [https://github.com/lonHeligas](https://github.com/lonHeligas)
 
-- [https://github.com/graysonwagner](Grayson Wagner)
+- [https://github.com/graysonwagner](https://github.com/graysonwagner)
 
-- [https://github.com/Kenny4297](Kedgard Cordero)
+- [https://github.com/Kenny4297](https://github.com/Kenny4297)
 
-- [https://github.com/EshuShango](Olu Akinyemi)
+- [https://github.com/EshuShango](https://github.com/EshuShango)
