@@ -55,9 +55,28 @@ async function getapi() {
   var data = await response.json();
   // console.log(data);
   console.log(data[0])
+
+  
+  document.getElementById("carousel-item-1").innerHTML = `<img class="d-block w-100" src="${data[0].thumbnail}" alt="First slide"/>`
+  document.getElementById("carousel-item-2").innerHTML = `<img class="d-block w-100" src="${data[1].thumbnail}" alt="First slide"/>`
+  document.getElementById("carousel-item-3").innerHTML = `<img class="d-block w-100" src="${data[2].thumbnail}" alt="First slide"/>`
+  
+  var paragraph = document.getElementById("gametitle1");
+  paragraph.textContent += data[0].title;
+
+  var paragraph = document.getElementById("gametitle2");
+  paragraph.textContent += data[1].title;
+
+  var paragraph = document.getElementById("gametitle3");
+  paragraph.textContent += data[2].title;
+
+
+  
+
   
 }
 
 getapi(apiurl)
+
 
 
