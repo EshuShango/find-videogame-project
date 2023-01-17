@@ -304,7 +304,7 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
                 generateGameRow += `
                 <div class="container search-row">
                     <div class="row">
-                        <div class="col column text-center" id="scrollingEntryTitle">
+                        <div class="col column text-center ml-10" id="scrollingEntryTitle">
                         <a class='scrolling-entry-title' href='${data.game_url}'><p>${data.title}</p></a>
                         </div>
                     </div>
