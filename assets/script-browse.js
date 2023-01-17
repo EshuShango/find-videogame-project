@@ -302,17 +302,20 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
                 console.log(data.short_description)
                 
                 generateGameRow += `
-                <div class="row">
-                    <div class="col column" id="scrollingEntryImg">
-                        <a href='${data.game_url}'><img src='${data.thumbnail}' alt="image of the game searched"></a>
+                <div class="container search-row">
+                    <div class="row">
+                        <div class="col column text-center ml-10" id="scrollingEntryTitle">
+                        <a class='scrolling-entry-title' href='${data.game_url}'><p>${data.title}</p></a>
+                        </div>
                     </div>
-    
-                    <div class="col column" id="scrollingEntryTitle">
-                    <a href='${data.game_url}'><p>${data.title}</p></a>
-                    </div>
-    
-                    <div class="col column" id="scrollingEntryInfo">
-                        <p>${data.short_description}</p>
+                    <div class="row ">
+                        <div class="col-3 column align-middle" id="scrollingEntryImg">
+                            <a href='${data.game_url}'><img class='thumbnail-image img-fluid' src='${data.thumbnail}' alt="image of the game searched"></a>
+                        </div>    
+
+                        <div class="col-9 column lead" id="scrollingEntryInfo">
+                            <p>${data.short_description}</p>
+                        </div>
                     </div>
                 </div>
                 `
