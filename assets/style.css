@@ -281,6 +281,19 @@ img {
     color: white;
 }
 
+.search-row{
+    padding: 10px;
+    border-radius: 20px 5px 20px 5px;
+    margin-bottom: 10px;    
+    background-color: rgb(117, 117, 117);   
+    border-style: inset;
+}
+
+.thumbnail-image{
+    width: 50%;
+}
+
+
 /* .hidden {
     display: none;
 } */
