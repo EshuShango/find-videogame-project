@@ -304,11 +304,11 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
                 generateGameRow += `
                 <div class="row">
                     <div class="col column" id="scrollingEntryImg">
-                        <a href='${data.game_url}'><img src='${data.thumbnail}' alt="image of the game searched"></a>
+                        <img src='${data.thumbnail}' alt="image of the game searched">
                     </div>
     
                     <div class="col column" id="scrollingEntryTitle">
-                    <a href='${data.game_url}'><p>${data.title}</p></a>
+                    <a class='history-tag' href='${data.game_url}'><p>${data.title}</p></a>
                     </div>
     
                     <div class="col column" id="scrollingEntryInfo">
@@ -329,6 +329,73 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
         }   
     
     }
-    }
+}
 
 document.getElementById("btn-submit").addEventListener('click', fetchWithCheckBoxAndSearchBar)
+
+//==============================LOCAL STORAGE===================================
+//This data will be put in the "Viewed History" section, and will just be the name wrapped in an anchor tag that sends the user back to that games homepage
+//  This will have to be "Viewed History" instead of just history since we do not know if the user actually played the game the searched for
+
+//Where the list of game names will be stored. 
+const historyArray = [];
+
+//The local storage array where data will be stored
+let localStorageHistory = JSON.parse(localStorage.getItem("History"));
+
+if (!localStorageHistory) {
+    localStorageHistory = [];
+};
+
+//All the anchor tags that lead to a game (either by clicking the thumbnail or the title of the game) are stored here
+// const arrayOfAnchorTagsForHistory = Array.from(document.querySelectorAll(".history-anchor-tag"));
+
+//! Create a for loop that loops through all the local storage and sets the 'history' section up upon refresh
+//^ SIMILAR => 
+//Setting the local storage when the page refreshed
+// for (let i = 0; i < localStorageHistory.length; i++) {
+//     let historyButton = document.createElement("button");
+//     historyButton.setAttribute("class", "history-item");
+//     historyButton.innerText = localStorageHistory[i];
+//     document.querySelector(".history").append(historyButton);
+
+//     historyButton.addEventListener('click', (event) => {
+//         event.preventDefault();
+//         console.log(`Line 70: History event button firing`)
+//         completeWeatherForecast(historyButton.innerText);
+//     })
+// }
+
+//Looping through the historyArray, checking to see if there are multiple games; We do not want multiple games in the search history
+const addToHistory = () => {
+    let userPicksGame = document.getElementById("search-bar-for-game").value;
+
+    if (!historyArray.includes(userPicksGame)) {
+        historyArray.push(userPicksGame);
+
+        localStorageHistory.push(userPicksGame);
+
+        //P tag for now until I discover how to incorporate a link through an anchor tag
+        let historyGameLink = document.createElement("p");
+        historyGameLink.setAttribute("class", "history-item");
+        //For now we just show the user what games they have looked at, in the future I want to send them to that games page
+
+        historyGameLink.innerText= userPicksGame;
+
+        //!Find out the location that history will be put on and find it's class/id to target.
+        // SIMILAR => document.querySelector(".history").append(cityHistoryButton);
+
+
+        localStorage.setItem("History", JSON.stringify(localStorageHistory))
+
+        //!Add an event listener for any of those history buttons so when they are clicked on, they can send the user to that page
+        
+        arrayOfAnchorTagsForHistory.addEventListener('click', (event) => {
+            event.preventDefault();
+        })
+
+    }
+};
+
+
+
