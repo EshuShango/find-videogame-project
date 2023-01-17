@@ -278,8 +278,9 @@ img {
 #API-response-test-section {
     display: flex;
     flex-wrap: wrap;
+    color: white;
 }
 
-.hidden {
+/* .hidden {
     display: none;
-}
+} */
