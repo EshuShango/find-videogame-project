@@ -134,6 +134,7 @@ const typesCategoryArray = ['action', 'action-rpg',
 generatedTypesCategoryCheckboxes ='';
 
 typesCategoryArray.forEach(type => {
+  console.log("Checked box check")
     generatedTypesCategoryCheckboxes += `
     <li>
         <a class="dropdown-item" href="#">
@@ -283,7 +284,6 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
 
     if (checkboxValuesToAddToUrl === '') {
         document.getElementById("API-response-test-section").innerHTML = ``;
-
         document.getElementById("API-response-test-section").innerHTML = `<p>Please select at least one checkbox option, or search for a title by name in the second search bar</p>`;
     } else {
         //Where the magic happens
@@ -317,11 +317,12 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
                 </div>
                 `
                 document.getElementById("API-response-test-section").innerHTML = generateGameRow;
-            //     console.log(generateGameRow)
+                console.log(generateGameRow)
             })
     
         } catch (error) {
             //Racing and sailing should throw this error for testing purposes
+
             document.getElementById("API-response-test-section").innerHTML = ``;
     
             document.getElementById("API-response-test-section").innerHTML = `<p>Sorry, the checkboxes you chose did not bring back any matches! Try selecting different checkboxes</p>`;
@@ -331,4 +332,3 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
     }
 
 document.getElementById("btn-submit").addEventListener('click', fetchWithCheckBoxAndSearchBar)
-
