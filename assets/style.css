@@ -29,6 +29,7 @@ body {
   padding-left: 45px;
   justify-content: center;
 }
+
 .main-discover {
   border-radius: 15px 15px 15px 15px;
   max-width: 100%;
@@ -64,7 +65,15 @@ body {
   color: rgb(32, 32, 32);
   transition: 0.2s;
 }
+
+.dropdown {
+    padding: 10px;
+    border-radius: 5px 5px;
+    
+}
+
 .dropdown-toggle:hover {
+  transition-duration: 0.5s;
   box-shadow: 0 0 1.5px 0.5px;
   border-radius: 5px 5px;
   background-color: white;
@@ -181,7 +190,7 @@ img {
 .cat-box {
   border-radius: 5px 5px;
   background-color: none;
-  margin-left: 5%;
+  margin-left: 15%;
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
@@ -255,6 +264,7 @@ h2:hover {
 }
 
 .history-section:hover {
+  transition-duration: 2s;
   color: rgb(245, 245, 245);
   border: white 2px solid;
   border-radius: 5px 5px 5px 5px;
