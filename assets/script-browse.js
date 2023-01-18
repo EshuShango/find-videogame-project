@@ -59,9 +59,9 @@ const getGameByNameDebounce = async (event) => {
           console.log(`The game thumbnail is ${data.thumbnail}`);
 
           gameInformation += `
-                    <div class="game-display">
+                    <div class="game-display search-row">
                         <a href='${data.game_url}'><img src='${data.thumbnail}' alt="image of the game searched"></a>
-                        <a class='history-item' href='${data.game_url}' target="_blank">${data.title}</a>
+                        <a class='history-item scrolling-entry-title' href='${data.game_url}' target="_blank">${data.title}</a>
                         <p>${data.short_description}</p>
                     </div>
                     `;
@@ -313,9 +313,9 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
       data.forEach((data) => {
         generateGameRow += `
 
-            <div class="container search-row">
+            <div class="container search-row ">
                 <div class="row">
-                    <div class="row">
+                    <div class="row ">
                         <div class="col column text-center ml-10" id="scrollingEntryTitle">
                         <a class='scrolling-entry-title history-item' href='${data.game_url}' target="_blank">${data.title}</a>
                         </div>
