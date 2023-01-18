@@ -230,6 +230,7 @@ h2 {
   line-height: 1.5;
   padding: 5px;
   font-size: medium;
+  color: white;
 }
 h2:hover {
   color: rgb(245, 245, 245);
