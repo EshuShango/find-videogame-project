@@ -67,7 +67,7 @@ body {
 }
 
 .dropdown {
-    padding: 10px;
+    /* padding: 10px; */
     border-radius: 5px 5px;
     
 }
@@ -131,8 +131,20 @@ img {
   box-shadow: 0 0 0.5px 0.2px;
   border-radius: 5px 5px;
   font-size: 0.75rem;
-  margin: 10px 65% 5px 5px;
+  margin: 10px 65% 5px 5px;  
 }
+
+.clearhist {
+    /* margin: 10px 65% 5px 5px; */
+    color: white;
+    background-color: rgb(8, 8, 8);
+    border-color: rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0.5px 0.2px;
+    border-radius: 5px 5px;
+    font-size: xx-small;
+    margin-left: 33%;
+  }
+
 .btn-submit-search:hover {
   transition: ease-in-out;
   border-color: rgb(175, 175, 175);
