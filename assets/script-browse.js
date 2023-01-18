@@ -352,7 +352,6 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
 
 document.getElementById("btn-submit").addEventListener("click", fetchWithCheckBoxAndSearchBar);
 
-
 //Local storage
 //The local storage array where data will be stored
 let localStorageHistory = JSON.parse(localStorage.getItem("History"));
@@ -364,10 +363,10 @@ if (!localStorageHistory) {
 //Generating local storage upon refresh
 for (let i = 0; i < localStorageHistory.length && i < 5; i++) {
     let historyPara = document.createElement("p");
+    historyPara.setAttribute("class", "localhistory-item");
     historyPara.innerText = localStorageHistory[i];
     document.getElementById("localstorage-history-section").append(historyPara);
 }
-
 
 //Looping through the historyArray, checking to see if there are multiple games; We do not want multiple games in the search history
 const addToHistory = () => {
@@ -380,9 +379,7 @@ const addToHistory = () => {
   
               localStorageHistory.unshift(userPicksGame);
   
-              //P tag for now until I discover how to incorporate a link through an anchor tag
               let historyGameLink = document.createElement("p");
-              //For now we just show the user what games they have looked at, in the future I want to send them to that games page
   
               historyGameLink.innerText= userPicksGame;
   
@@ -395,6 +392,11 @@ const addToHistory = () => {
           });
       });
 };
+
+const clearHistory = () => {
+  localStorage.clear();
+  document.getElementById("localstorage-history-section").innerHTML = '';
+}
 
 document.getElementById("clear-history").addEventListener('click', clearHistory);
 
