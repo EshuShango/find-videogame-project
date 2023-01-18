@@ -113,6 +113,7 @@ img {
   position: relative;
   color: rgb(245, 245, 245);
   background-color: rgb(32, 32, 32);
+  width: 100%;
 }
 
 .btn-submit-search {
