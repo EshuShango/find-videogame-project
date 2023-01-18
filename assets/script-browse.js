@@ -1,75 +1,17 @@
-//! REQUIREMENTS FOR ANY FETCHING
-//& Options that work and are needed for any type of request
-// const options = {
-// 	method: 'GET',
-// 	headers: {
-// 		'X-RapidAPI-Key': '5353e51751msha2b28d9e3384746p1a9b44jsne8dbb6955924',
-// 		'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
-// 	}
-// };
+//Author for script-browser.js: Ked
 
-// See https://rapidapi.com/digiwalls/api/free-to-play-games-database for specific url requests
-
-//This array is just an overview of all the types of games. The array that is used for the fetch requests are broken up in the section below
-const arrayOfGenres = [
-  "shooter",
-  "strategy",
-  "moba",
-  "racing",
-  "sports",
-  "social",
-  "sandbox",
-  "open-world",
-  "survival",
-  "pvp",
-  "pve",
-  "pixel",
-  "voxel",
-  "zombie",
-  "turn-based",
-  "first-person",
-  "third-person",
-  "top-down",
-  "tank",
-  "space",
-  "sailing",
-  "side-scroller",
-  "superhero",
-  "permadeath",
-  "card",
-  "battle-royale",
-  "mmo",
-  "mmofps",
-  "mmotps",
-  "3d",
-  "2d",
-  "anime",
-  "fantasy",
-  "sci-fi",
-  "fighting",
-  "action-rpg",
-  "action",
-  "military",
-  "martial-arts",
-  "flight",
-  "low-spec",
-  "tower-defense",
-  "horror",
-  "mmorts",
-];
-
-//!Debounce function for the second search bar
-const debounce = (funcToApply) => {
+//!Debounce function for the first search bar
+const debounce = (functionToApply) => {
   let timer;
   return (...args) => {
     clearTimeout(timer);
     timer = setTimeout(() => {
-      funcToApply.apply(this, args);
+      functionToApply.apply(this, args);
     }, 1000);
   };
 };
+
 const saveInput = () => {
-  // console.log(document.getElementById("search-bar").value);
   getGameByNameDebounce();
 };
 
@@ -119,7 +61,7 @@ const getGameByNameDebounce = async (event) => {
           gameInformation += `
                     <div class="game-display">
                         <a href='${data.game_url}'><img src='${data.thumbnail}' alt="image of the game searched"></a>
-                        <a href='${data.game_url}'><p>${data.title}</p></a>
+                        <a class='history-item' href='${data.game_url}' target="_blank">${data.title}</a>
                         <p>${data.short_description}</p>
                     </div>
                     `;
@@ -128,7 +70,11 @@ const getGameByNameDebounce = async (event) => {
           count++;
         }
       });
+
+      addToHistory();
+
     }
+
     //If nothing is found in the for loop
     if (count === 0) {
       document.getElementById("API-response-test-section").innerHTML = ``;
@@ -194,7 +140,6 @@ const typesCategoryArray = [
 generatedTypesCategoryCheckboxes = "";
 
 typesCategoryArray.forEach((type) => {
-  // console.log("Checked box check")
   generatedTypesCategoryCheckboxes += `
     <li>
         <a class="dropdown-item" href="#">
@@ -340,7 +285,6 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
   const checkboxValuesToAddToUrl = checkboxesAsAString.replaceAll(",", ".");
 
   //Getting the search bar value: browser, pc, or all.
-  // let userInputChoice = document.getElementById("search-bar");
   let userInputChoiceValue = document.getElementById("search-bar").value;
   console.log(`This is the userInputChoiceValue: ${userInputChoiceValue}`);
 
@@ -362,30 +306,24 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
         options
       );
       data = await response.json();
-      console.log(data);
-      // console.log(data.thumbnail)
 
       //^Generate the rectangles for each game
       generateGameRow = "";
 
       data.forEach((data) => {
-        console.log(data.title);
-        console.log(data.thumbnail);
-        console.log(data.short_description);
-
         generateGameRow += `
 
             <div class="container search-row">
                 <div class="row">
                     <div class="row">
                         <div class="col column text-center ml-10" id="scrollingEntryTitle">
-                        <a class='scrolling-entry-title' href='${data.game_url}'><p>${data.title}</p></a>
+                        <a class='scrolling-entry-title history-item' href='${data.game_url}' target="_blank">${data.title}</a>
                         </div>
                     </div>
                 </div>
                     <div class="row ">
                         <div class="col-3 column align-middle" id="scrollingEntryImg">
-                            <a href='${data.game_url}'><img class='thumbnail-image img-fluid' src='${data.thumbnail}' alt="image of the game searched"></a>
+                            <img class='thumbnail-image img-fluid' src='${data.thumbnail}' alt="image of the game searched">
                         </div>    
 
                         <div class="col-9 column lead" id="scrollingEntryInfo">
@@ -397,11 +335,12 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
                 `;
         document.getElementById("API-response-test-section").innerHTML =
           generateGameRow;
-        console.log(generateGameRow);
-      });
-    } catch (error) {
-      //Racing and sailing should throw this error for testing purposes
 
+      });
+
+    addToHistory();
+
+    } catch (error) {
       document.getElementById("API-response-test-section").innerHTML = ``;
 
       document.getElementById(
@@ -411,6 +350,53 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
   }
 };
 
-document
-  .getElementById("btn-submit")
-  .addEventListener("click", fetchWithCheckBoxAndSearchBar);
+document.getElementById("btn-submit").addEventListener("click", fetchWithCheckBoxAndSearchBar);
+
+
+//Local storage
+//The local storage array where data will be stored
+let localStorageHistory = JSON.parse(localStorage.getItem("History"));
+
+if (!localStorageHistory) {
+    localStorageHistory = [];
+};
+
+//Generating local storage upon refresh
+for (let i = 0; i < localStorageHistory.length && i < 5; i++) {
+    let historyPara = document.createElement("p");
+    historyPara.innerText = localStorageHistory[i];
+    document.getElementById("localstorage-history-section").append(historyPara);
+}
+
+
+//Looping through the historyArray, checking to see if there are multiple games; We do not want multiple games in the search history
+const addToHistory = () => {
+    const historyItems = Array.from(document.querySelectorAll(".history-item"));
+      historyItems.forEach(item => {
+          item.addEventListener('click', (event) => {
+              console.log("Add to history function firing")
+              console.log(event.target.innerText);
+              let userPicksGame = event.target.innerText;
+  
+              localStorageHistory.unshift(userPicksGame);
+  
+              //P tag for now until I discover how to incorporate a link through an anchor tag
+              let historyGameLink = document.createElement("p");
+              //For now we just show the user what games they have looked at, in the future I want to send them to that games page
+  
+              historyGameLink.innerText= userPicksGame;
+  
+              localStorageHistory.splice(5);
+              console.log(localStorageHistory);
+
+              document.getElementById("localstorage-history-section").appendChild(historyGameLink);
+  
+              localStorage.setItem("History", JSON.stringify(localStorageHistory))
+          });
+      });
+};
+
+document.getElementById("clear-history").addEventListener('click', clearHistory);
+
+
+
