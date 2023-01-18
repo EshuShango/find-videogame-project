@@ -158,10 +158,15 @@ img {
   
 } */
 
-.carousel {
+ .carousel {
   color: white;
   padding: 50px;
-}
+} 
+
+/* .carousel-item {
+  display:flex;
+
+} */
 
 /* A class that anyone can use to make code disappear  */
 .hidden {
@@ -287,3 +292,31 @@ height: auto;
 text-align: center;  
 padding: 5px; 
 } */
+
+ .image {
+  width:100%;
+  display: inline-block;
+
+}
+
+
+/* .row {
+  border:2px  solid  red;
+}
+
+.col {
+  border: 2px solid blue;
+}
+
+.words {
+  display:inline-block;
+} */ 
+
+.carousel-control-next, .carousel-control-prev {
+  width:20px;
+  height:20px;
+  
+  margin-top: 220px;
+  
+}
+
