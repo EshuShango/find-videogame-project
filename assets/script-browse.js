@@ -1,77 +1,17 @@
-//! REQUIREMENTS FOR ANY FETCHING
-//& Options that work and are needed for any type of request
-// const options = {
-// 	method: 'GET',
-// 	headers: {
-// 		'X-RapidAPI-Key': '5353e51751msha2b28d9e3384746p1a9b44jsne8dbb6955924',
-// 		'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
-// 	}
-// };
+//Author for script-browser.js: Ked
 
-// See https://rapidapi.com/digiwalls/api/free-to-play-games-database for specific url requests
-
-//This array is just an overview of all the types of games. The array that is used for the fetch requests are broken up in the section below
-const arrayOfGenres = [
-  "shooter",
-  "strategy",
-  "moba",
-  "racing",
-  "sports",
-  "social",
-  "sandbox",
-  "open-world",
-  "survival",
-  "pvp",
-  "pve",
-  "pixel",
-  "voxel",
-  "zombie",
-  "turn-based",
-  "first-person",
-  "third-person",
-  "top-down",
-  "tank",
-  "space",
-  "sailing",
-  "side-scroller",
-  "superhero",
-  "permadeath",
-  "card",
-  "battle-royale",
-  "mmo",
-  "mmofps",
-  "mmotps",
-  "3d",
-  "2d",
-  "anime",
-  "fantasy",
-  "sci-fi",
-  "fighting",
-  "action-rpg",
-  "action",
-  "military",
-  "martial-arts",
-  "flight",
-  "low-spec",
-  "tower-defense",
-  "horror",
-  "mmorts",
-];
-
-
-
-//!Debounce function for the second search bar
-const debounce = (funcToApply) => {
+//!Debounce function for the first search bar
+const debounce = (functionToApply) => {
   let timer;
   return (...args) => {
     clearTimeout(timer);
     timer = setTimeout(() => {
-      funcToApply.apply(this, args);
+      functionToApply.apply(this, args);
     }, 1000);
   };
 };
+
 const saveInput = () => {
-  // console.log(document.getElementById("search-bar").value);
   getGameByNameDebounce();
 };
 
@@ -131,31 +71,9 @@ const getGameByNameDebounce = async (event) => {
         }
       });
 
-      const historyItems = Array.from(document.querySelectorAll(".history-item"));
+      addToHistory();
 
-      historyItems.forEach(item => {
-          item.addEventListener('click', (event) => {
-              console.log("Add to history function firing")
-              console.log(event.target.innerText);
-              let userPicksGame = event.target.innerText;
-  
-              localStorageHistory.push(userPicksGame);
-  
-              //P tag for now until I discover how to incorporate a link through an anchor tag
-              let historyGameLink = document.createElement("p");
-              //For now we just show the user what games they have looked at, in the future I want to send them to that games page
-  
-              historyGameLink.innerText= userPicksGame;
-  
-              //!Find out the location that history will be put on and find it's class/id to target.
-              // SIMILAR => document.querySelector(".history").append(cityHistoryButton);
-              document.getElementById("localstorage-history-section").appendChild(historyGameLink)
-  
-              localStorage.setItem("History", JSON.stringify(localStorageHistory))
-          });      
-    });
-
-}
+    }
 
     //If nothing is found in the for loop
     if (count === 0) {
@@ -222,7 +140,6 @@ const typesCategoryArray = [
 generatedTypesCategoryCheckboxes = "";
 
 typesCategoryArray.forEach((type) => {
-  // console.log("Checked box check")
   generatedTypesCategoryCheckboxes += `
     <li>
         <a class="dropdown-item" href="#">
@@ -368,7 +285,6 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
   const checkboxValuesToAddToUrl = checkboxesAsAString.replaceAll(",", ".");
 
   //Getting the search bar value: browser, pc, or all.
-  // let userInputChoice = document.getElementById("search-bar");
   let userInputChoiceValue = document.getElementById("search-bar").value;
   console.log(`This is the userInputChoiceValue: ${userInputChoiceValue}`);
 
@@ -390,7 +306,6 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
         options
       );
       data = await response.json();
-      // console.log(data.thumbnail)
 
       //^Generate the rectangles for each game
       generateGameRow = "";
@@ -423,34 +338,9 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
 
       });
 
-    const historyItems = Array.from(document.querySelectorAll(".history-item"));
-
-    historyItems.forEach(item => {
-        item.addEventListener('click', (event) => {
-            console.log("Add to history function firing")
-            console.log(event.target.innerText);
-            let userPicksGame = event.target.innerText;
-
-            localStorageHistory.push(userPicksGame);
-
-            //P tag for now until I discover how to incorporate a link through an anchor tag
-            let historyGameLink = document.createElement("p");
-            //For now we just show the user what games they have looked at, in the future I want to send them to that games page
-
-            historyGameLink.innerText= userPicksGame;
-
-            //!Find out the location that history will be put on and find it's class/id to target.
-            // SIMILAR => document.querySelector(".history").append(cityHistoryButton);
-            document.getElementById("localstorage-history-section").appendChild(historyGameLink)
-
-            localStorage.setItem("History", JSON.stringify(localStorageHistory))
-        });
-    });
-
+    addToHistory();
 
     } catch (error) {
-      //Racing and sailing should throw this error for testing purposes
-
       document.getElementById("API-response-test-section").innerHTML = ``;
 
       document.getElementById(
@@ -460,22 +350,10 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
   }
 };
 
-// if (typeof(historyItems) !== 'undefined') {
-//     historyItems.addEventListener('click', addToHistory);
-// }
-
 document.getElementById("btn-submit").addEventListener("click", fetchWithCheckBoxAndSearchBar);
 
 
-
-
-//==============================LOCAL STORAGE===================================
-//This data will be put in the "Viewed History" section, and will just be the name wrapped in an anchor tag that sends the user back to that games homepage
-//  This will have to be "Viewed History" instead of just history since we do not know if the user actually played the game the searched for
-
-//Where the list of game names will be stored. 
-const historyArray = [];
-
+//Local storage
 //The local storage array where data will be stored
 let localStorageHistory = JSON.parse(localStorage.getItem("History"));
 
@@ -483,39 +361,42 @@ if (!localStorageHistory) {
     localStorageHistory = [];
 };
 
-//All the anchor tags that lead to a game (either by clicking the thumbnail or the title of the game) are stored here
-// const arrayOfAnchorTagsForHistory = Array.from(document.querySelectorAll(".history-anchor-tag"));
-
-//! Create a for loop that loops through all the local storage and sets the 'history' section up upon refresh
-//^ SIMILAR => 
-//Setting the local storage when the page refreshed
-for (let i = 0; i < localStorageHistory.length; i++) {
+//Generating local storage upon refresh
+for (let i = 0; i < localStorageHistory.length && i < 5; i++) {
     let historyPara = document.createElement("p");
     historyPara.innerText = localStorageHistory[i];
     document.getElementById("localstorage-history-section").append(historyPara);
 }
 
+
 //Looping through the historyArray, checking to see if there are multiple games; We do not want multiple games in the search history
-const addToHistory = (event) => {
-    console.log("Add to history function firing")
-    console.log(event.innerText);
-    let userPicksGame = event.innerText;
+const addToHistory = () => {
+    const historyItems = Array.from(document.querySelectorAll(".history-item"));
+      historyItems.forEach(item => {
+          item.addEventListener('click', (event) => {
+              console.log("Add to history function firing")
+              console.log(event.target.innerText);
+              let userPicksGame = event.target.innerText;
+  
+              localStorageHistory.unshift(userPicksGame);
+  
+              //P tag for now until I discover how to incorporate a link through an anchor tag
+              let historyGameLink = document.createElement("p");
+              //For now we just show the user what games they have looked at, in the future I want to send them to that games page
+  
+              historyGameLink.innerText= userPicksGame;
+  
+              localStorageHistory.splice(5);
+              console.log(localStorageHistory);
 
-    localStorageHistory.push(userPicksGame);
-
-    //P tag for now until I discover how to incorporate a link through an anchor tag
-    let historyGameLink = document.createElement("p");
-    //For now we just show the user what games they have looked at, in the future I want to send them to that games page
-
-    historyGameLink.innerText= userPicksGame;
-
-    //!Find out the location that history will be put on and find it's class/id to target.
-    // SIMILAR => document.querySelector(".history").append(cityHistoryButton);
-    document.getElementById("localstorage-history-section").appendChild(historyGameLink)
-
-    localStorage.setItem("History", JSON.stringify(localStorageHistory))
-
+              document.getElementById("localstorage-history-section").appendChild(historyGameLink);
+  
+              localStorage.setItem("History", JSON.stringify(localStorageHistory))
+          });
+      });
 };
+
+document.getElementById("clear-history").addEventListener('click', clearHistory);
 
 
 
