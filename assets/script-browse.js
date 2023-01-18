@@ -363,6 +363,7 @@ if (!localStorageHistory) {
 //Generating local storage upon refresh
 for (let i = 0; i < localStorageHistory.length && i < 5; i++) {
     let historyPara = document.createElement("p");
+    historyPara.setAttribute("class", "localhistory-item");
     historyPara.innerText = localStorageHistory[i];
     document.getElementById("localstorage-history-section").append(historyPara);
 }
@@ -391,6 +392,11 @@ const addToHistory = () => {
           });
       });
 };
+
+const clearHistory = () => {
+  localStorage.clear();
+  document.getElementById("localstorage-history-section").innerHTML = '';
+}
 
 document.getElementById("clear-history").addEventListener('click', clearHistory);
 
