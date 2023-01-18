@@ -57,9 +57,57 @@ async function getapi() {
   console.log(data[0])
 
   
-  document.getElementById("carousel-item-1").innerHTML = `<p><img class="d-block w-100" src="${data[0].thumbnail}" alt="First slide"/></p>`
-  document.getElementById("carousel-item-2").innerHTML = `<p><img class="d-block w-100" src="${data[1].thumbnail}" alt="First slide"/></p>`
-  document.getElementById("carousel-item-3").innerHTML = `<p><img class="d-block w-100" src="${data[2].thumbnail}" alt="First slide"/></p>`
+  document.getElementById("carousel-item-1").innerHTML = `<div class="row"><div class="col-9 mr-0 pr-0"> <p> <img class="d-block image " src="${data[0].thumbnail}" alt="First slide"/></p> </div>
+  <div class="mx-0 my-0 words col-3"> 
+  <h1 id="gametitle1"></h1>
+  <h2 id="description1" ></h2>
+  <p> developer: ${data[0].developer} </p>
+  <p> genre: ${data[0].genre} </p>
+  <p> platform: ${data[0].platform} </p>
+  <div id="gameurl1">
+  <a href="${data[0].game_url}">Game Website</a>
+  </div>
+  </div>
+  </div>`
+
+  document.getElementById("carousel-item-2").innerHTML = `<div class="row"><div class="col-9 mr-0 pr-0"> <p> <img class="d-block image " src="${data[1].thumbnail}" alt="First slide"/></p> </div>
+  <div class="mx-0 my-0 words col-3"> 
+  <h1 id="gametitle2"></h1>
+  <h2 id="description2" ></h2>
+  <p> developer: ${data[1].developer} </p>
+  <p> genre: ${data[1].genre} </p>
+  <p> platform: ${data[1].platform} </p>
+  <div id="gameurl2">
+  <a href="${data[1].game_url}">Game Website</a>
+  </div>
+  </div>
+  </div>`
+
+  document.getElementById("carousel-item-3").innerHTML = `<div class="row"><div class="col-9 mr-0 pr-0"> <p> <img class="d-block image " src="${data[2].thumbnail}" alt="First slide"/></p> </div>
+  <div class="mx-0 my-0 words col-3"> 
+  <h1 id="gametitle3"></h1>
+  <h2 id="description3" ></h2>
+  <p> developer: ${data[2].developer} </p>
+  <p> genre: ${data[2].genre} </p>
+  <p> platform: ${data[2].platform} </p>
+  <div id="gameurl3">
+  <a href="${data[2].game_url}">Game Website</a>
+  </div>
+  </div>
+  </div>`
+  
+  
+  
+  
+  
+  
+  // document.getElementById("carousel-item-2").innerHTML = `<p class="col-8"><img class="d-block w-100" src="${data[1].thumbnail}" alt="First slide"/></p>`
+  // document.getElementById("carousel-item-3").innerHTML = `<p class="col-8"><img class="d-block w-100" src="${data[2].thumbnail}" alt="First slide"/></p> `
+  
+  
+  
+  
+  
   
   var paragraph = document.getElementById("gametitle1");
   paragraph.textContent += data[0].title;
@@ -79,7 +127,17 @@ async function getapi() {
   var paragraph = document.getElementById("description3");
   paragraph.textContent += data[2].short_description;
 
+  // var paragraph = document.getElementById("gameurl1");
+  // paragraph.textContent += data[0].game_url;
 
+  // var paragraph = document.getElementById("gameurl2");
+  // paragraph.textContent += data[1].game_url;
+
+  // var paragraph = document.getElementById("gameurl3");
+  // paragraph.textContent += data[2].game_url;
+
+  
+  // document.getElementById("gameurl1").innerHTML = '<a href=" ${data[0].game_url} ">Game Website</a>'
   
 
   
