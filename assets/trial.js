@@ -57,9 +57,9 @@ async function getapi() {
   console.log(data[0])
 
   
-  document.getElementById("carousel-item-1").innerHTML = `<img class="d-block w-100" src="${data[0].thumbnail}" alt="First slide"/>`
-  document.getElementById("carousel-item-2").innerHTML = `<img class="d-block w-100" src="${data[1].thumbnail}" alt="First slide"/>`
-  document.getElementById("carousel-item-3").innerHTML = `<img class="d-block w-100" src="${data[2].thumbnail}" alt="First slide"/>`
+  document.getElementById("carousel-item-1").innerHTML = `<p><img class="d-block w-100" src="${data[0].thumbnail}" alt="First slide"/></p>`
+  document.getElementById("carousel-item-2").innerHTML = `<p><img class="d-block w-100" src="${data[1].thumbnail}" alt="First slide"/></p>`
+  document.getElementById("carousel-item-3").innerHTML = `<p><img class="d-block w-100" src="${data[2].thumbnail}" alt="First slide"/></p>`
   
   var paragraph = document.getElementById("gametitle1");
   paragraph.textContent += data[0].title;
@@ -69,6 +69,15 @@ async function getapi() {
 
   var paragraph = document.getElementById("gametitle3");
   paragraph.textContent += data[2].title;
+
+  var paragraph = document.getElementById("description1");
+  paragraph.textContent += data[0].short_description;
+
+  var paragraph = document.getElementById("description2");
+  paragraph.textContent += data[1].short_description;
+
+  var paragraph = document.getElementById("description3");
+  paragraph.textContent += data[2].short_description;
 
 
   
