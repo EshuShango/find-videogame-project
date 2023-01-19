@@ -21,7 +21,7 @@ Create our own app and meet project requirements !
 - It's okay to get "help"
 - Learning takes time
 - How to Push, Pull and commit with GitHub via cml/terminal with more efficient
-- teamwork we go farther
+- with teamwork we go farther
 
 ## RoadMap
 
