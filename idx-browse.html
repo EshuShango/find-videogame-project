@@ -19,60 +19,39 @@
   <!-- Cool Icon -->
   <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
   <!-- Author: Olu - adding main js file ?-->
-  <script src="./assets/script-browse.js" defer></script>
+  <script src="./assets/JS/spt-browse.js" defer></script>
   <!--Author: Lon -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
   <!-- Author: Olu - Adding a reset CSS-->
   <!-- <link rel="stylesheet" href="./assets/reset.css" /> -->
-  <link rel="stylesheet" href="./assets/style.css" />
+  <link rel="stylesheet" href="./assets/CSS/style.css" />
 
-  <!-- Author: Olu - Hey this is a script file for AWESOME FONTS FontAwesome, but trying to figure why some are not showing up-->
-  <!-- <script src=
-    "https://kit.fontawesome.com/6ec9c7cfba.js"
-            crossorigin="anonymous">
-        </script> -->
 </head>
 
 <body>
-  <!-- NOTES: Author: Ked
-      Hey everyone! Use the link below for the blueprint of all the Bootstrap layout components! This is also a link to their documentation for any extra information. PLEASE feel free to copy and paste any code you find on the bootstrap website.
-              https://getbootstrap.com/docs/4.0/getting-started/browsers-devices/#browser-zooming 
-
-      --Make sure to NOT delete any of the class names! This is how bootstrap knows what is what. Feel free to add classes, but prioritize ID's over classes so the default classes are not mistaken for your created class. Try not to use a pre-made class as a css selector, as this too may jank up the bootstrap interface. 
-
-      --We want to use the bootstrap utilities (nav bar, search bar, ect) only as starting templates, and it's up to us to add more colors, spacing, ect to make it look like it's not a website made from bootstrap (Yes this will be hard, but that's our goal!)
-
-      --To avoid those dreaded merge conflicts, please only adjust code in the section you are working in. This way when we pull a new master branch, hopefully there won't be any merge conflicts.
-        
-        -->
   <!--BEGIN-Con-->
   <div class="container-box">
     <!-- Header/Navigation section -->
     <div class="row">
       <nav class="navbar navbar-expand-lg navbar-light">
-        <!--Search Bar -->
+        <!--Nav option Search Bar -->
         <form class="form-inline my-2 my-lg-0">
-          <!-- Magnyfing Glass Icon needs to be within the search bar -->
-          <!-- <i class=“fa-solid fa-magnifying-glass” id=“mag-icon”></i> -->
-
           <div class="search-con">
-            <!-- <i class="fa-thin fa-magnifying-glass"></i> -->
             <input class="form-control mr-sm-2" type="search" placeholder="search any game " aria-label="Search"
               id="search-bar-for-game" />
           </div>
         </form>
+        <!-- Nav option pages -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active" id="something">
-              <a class="nav-link" id="nav-link-discover" href="./index-discover.html">Discover <span
+              <a class="nav-link" id="nav-link-discover" href="./idx-discover.html">Discover <span
                   class="sr-only"></span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="nav-link-browser" href="./browse.html">Browse</a>
+              <a class="nav-link" id="nav-link-browser" href="./idx-browse.html">Browse</a>
             </li>
-
-
             <div id="debounce-section"></div>
           </ul>
         </div>
@@ -81,42 +60,32 @@
   </div>
   <!-- END-CON -->
 
+  <!-- BEGIN-Col 2 -->
   <div class="row">
-
-    <!-- BEGIN-Col 2 id="scroll-card"-->
-    <!-- do class not id -->
-
     <div class="col-sm box ">
       <div class="col-sm  container container-fluid" id="API-response-test-section">
-
-        <!-- Game entry in the scroll section -->
+        <!-- Games in the scroll section that appears when searched -->
         <div class="col-8 column  " id="scrollingEntry"></div>
 
         <div class="col-4 column  " id="scrollBar scrollingEntryBar">
-          <!-- <p>scroll bar</p> -->
         </div>
 
       </div>
     </div>
-
     <!-- END-Col 2 -->
 
     <!-- BEGIN-Col 1 -->
     <aside class="col-4 container" id="aside-container">
       <div class="aside-box">
-        <!-- <p style="color: red">Col 1</p> -->
         <div class="row">
           <!-- subsection of Col 1-->
           <div class="col-4 cat-box">
-            <!-- <button id="game-btn-submit-search">Find Game Name</button> -->
-            <!-- The second search bar is find any game by name -->
             <form class="form-inline my-2 my-lg-0 ">
               <div class="search-con2">
                 <input class="form-control mr-sm-2 " type="search" placeholder="browser,pc or all" aria-label="Search"
                   id="search-bar" />
               </div>
             </form>
-
             <button class="btn-submit-search" id="btn-submit"> Search </button>
 
             <!--------------------- Main Category main-item -->
@@ -151,7 +120,7 @@
               <ui class="dropdown-menu multiplayer-category" aria-labelledby="multiplayerDropdown">
               </ui>
             </div>
-            <!--------------------POV Category Array------>
+            <!--------------------POV Category Array-->
 
             <div class="type-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="POVDropdown genreDropdown" role="button"
@@ -173,14 +142,13 @@
               <ui class="dropdown-menu random-category" aria-labelledby="randomDropdown">
               </ui>
             </div>
+            <!--- History section -->
             <div class="history-section col">
               <h2>History</h2>
               <div id="localstorage-history-section">
-
               </div>
-
               <div>
-                <button id="clear-history">Clear History</button>
+                <button class="clearhist" id="clear-history">Clear History</button>
               </div>
             </div>
           </div>

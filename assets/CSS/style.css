@@ -23,7 +23,6 @@ body {
 }
 
 .discover-page {
-  /* background-color: red; */
   margin: 2%;
   padding: 10px;
   padding-left: 45px;
@@ -35,8 +34,6 @@ body {
 }
 
 .container-box {
-  /* border-radius: 5px; */
-  /* box-shadow: 0 0 10px 2px; */
   width: 100%;
   max-width: 80%;
   background-color: none;
@@ -89,15 +86,9 @@ img {
   border-radius: 25px 25px;
 }
 .search-con::after {
-  /* border-radius: 25px 25px; */
   border-color: white;
 }
 #search-bar {
-  /* box-shadow: 0 0 5px 1px; */
-  /* border-radius: 25px 25px;  */
-  /* border-color: rgba(0, 0, 0, 0); */
-  /* padding-left: 5px; */
-  margin: 0;
   border: 0;
   padding: 12px;
   display: inline-block;
@@ -116,7 +107,8 @@ img {
   width: 100%;
 }
 
-.btn-submit-search {
+.btn-submit-search,
+.clearhist {
   color: white;
   background-color: rgb(8, 8, 8);
   border-color: rgba(0, 0, 0, 0);
@@ -124,6 +116,15 @@ img {
   border-radius: 5px 5px;
   font-size: 0.75rem;
   margin: 10px 65% 5px 5px;
+}
+.clearhist {
+  color: white;
+  background-color: rgb(8, 8, 8);
+  border-color: rgba(0, 0, 0, 0);
+  box-shadow: 0 0 0.5px 0.2px;
+  border-radius: 5px 5px;
+  font-size: xx-small;
+  margin-left: 27%;
 }
 .btn-submit-search:hover {
   transition: ease-in-out;
@@ -154,26 +155,6 @@ img {
   color: rgb(245, 245, 245);
   border-radius: 10px 10px 10px 10px;
 }
-
-/* .carousel-inner {
-  
-} */
-
- .carousel {
-  color: white;
-  padding: 50px;
-} 
-
-/* .carousel-item {
-  display:flex;
-
-} */
-
-/* A class that anyone can use to make code disappear  */
-.hidden {
-  display: none;
-}
-/* ===================================== */
 
 #aside-container {
   border-radius: 5px;
@@ -245,8 +226,6 @@ h2:hover {
   font-size: medium;
 }
 .history-section {
-  /* border: white 2px solid; */
-  /* border-color: rgb(245, 245, 245) ; */
   border-radius: 5px 5px 5px 5px;
   font-size: x-small;
   padding: 5px;
@@ -276,49 +255,35 @@ h2:hover {
   flex-direction: column;
 }
 
-/* .side-panel {
-    
-    height: 50px;
-    width: 100px;
-    border-radius: 10px 10px 10px 10px;
-    margin-left: 75%;
-    box-shadow: 5px 1px;
-    line-height: 1;
-    justify-content: center;
-    
-} */
-
-/* #hero {
-width: 300px;  
-height: auto;  
-text-align: center;  
-padding: 5px; 
-} */
-
- .image {
-  width:100%;
+.image {
+  width: 100%;
   display: inline-block;
-
+}
+.game-site {
+  color: white;
+  transition: all 0.5s ease-in;
+}
+.game-site:hover {
+  color: rgb(175, 175, 175);
+  font-size: large;
+  transition: all 0.5s ease-out;
 }
 
-
-/* .row {
-  border:2px  solid  red;
-}
-
-.col {
-  border: 2px solid blue;
-}
-
-.words {
-  display:inline-block;
-} */ 
-
-.carousel-control-next, .carousel-control-prev {
-  width:20px;
-  height:20px;
-  
+.carousel-control-next,
+.carousel-control-prev {
+  width: 20px;
+  height: 20px;
   margin-top: 220px;
-  
 }
+
+.carousel {
+  color: white;
+}
+
+.text-light {
+  margin-left: 150px;
+  margin-top: 10px;
+  font-size: x-large;
+}
+
 

@@ -72,7 +72,6 @@ const getGameByNameDebounce = async (event) => {
       });
 
       addToHistory();
-
     }
 
     //If nothing is found in the for loop
@@ -335,11 +334,9 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
                 `;
         document.getElementById("API-response-test-section").innerHTML =
           generateGameRow;
-
       });
 
-    addToHistory();
-
+      addToHistory();
     } catch (error) {
       document.getElementById("API-response-test-section").innerHTML = ``;
 
@@ -350,55 +347,58 @@ const fetchWithCheckBoxAndSearchBar = async (event) => {
   }
 };
 
-document.getElementById("btn-submit").addEventListener("click", fetchWithCheckBoxAndSearchBar);
+document
+  .getElementById("btn-submit")
+  .addEventListener("click", fetchWithCheckBoxAndSearchBar);
 
 //Local storage
 //The local storage array where data will be stored
 let localStorageHistory = JSON.parse(localStorage.getItem("History"));
 
 if (!localStorageHistory) {
-    localStorageHistory = [];
-};
+  localStorageHistory = [];
+}
 
 //Generating local storage upon refresh
 for (let i = 0; i < localStorageHistory.length && i < 5; i++) {
-    let historyPara = document.createElement("p");
-    historyPara.setAttribute("class", "localhistory-item");
-    historyPara.innerText = localStorageHistory[i];
-    document.getElementById("localstorage-history-section").append(historyPara);
+  let historyPara = document.createElement("p");
+  historyPara.setAttribute("class", "localhistory-item");
+  historyPara.innerText = localStorageHistory[i];
+  document.getElementById("localstorage-history-section").append(historyPara);
 }
 
 //Looping through the historyArray, checking to see if there are multiple games; We do not want multiple games in the search history
 const addToHistory = () => {
-    const historyItems = Array.from(document.querySelectorAll(".history-item"));
-      historyItems.forEach(item => {
-          item.addEventListener('click', (event) => {
-              console.log("Add to history function firing")
-              console.log(event.target.innerText);
-              let userPicksGame = event.target.innerText;
-  
-              localStorageHistory.unshift(userPicksGame);
-  
-              let historyGameLink = document.createElement("p");
-  
-              historyGameLink.innerText= userPicksGame;
-  
-              localStorageHistory.splice(5);
-              console.log(localStorageHistory);
+  const historyItems = Array.from(document.querySelectorAll(".history-item"));
+  historyItems.forEach((item) => {
+    item.addEventListener("click", (event) => {
+      console.log("Add to history function firing");
+      console.log(event.target.innerText);
+      let userPicksGame = event.target.innerText;
 
-              document.getElementById("localstorage-history-section").appendChild(historyGameLink);
-  
-              localStorage.setItem("History", JSON.stringify(localStorageHistory))
-          });
-      });
+      localStorageHistory.unshift(userPicksGame);
+
+      let historyGameLink = document.createElement("p");
+
+      historyGameLink.innerText = userPicksGame;
+
+      localStorageHistory.splice(5);
+      console.log(localStorageHistory);
+
+      document
+        .getElementById("localstorage-history-section")
+        .appendChild(historyGameLink);
+
+      localStorage.setItem("History", JSON.stringify(localStorageHistory));
+    });
+  });
 };
 
 const clearHistory = () => {
   localStorage.clear();
-  document.getElementById("localstorage-history-section").innerHTML = '';
-}
+  document.getElementById("localstorage-history-section").innerHTML = "";
+};
 
-document.getElementById("clear-history").addEventListener('click', clearHistory);
-
-
-
+document
+  .getElementById("clear-history")
+  .addEventListener("click", clearHistory);
