@@ -2,7 +2,7 @@
 
 ### by group-1 of UofM MERN-BootCamp 2023
 
-[]()
+## [Find-Videogame-Prjct-site](https://eshushango.github.io/find-videogame-project/)
 
 ![Find-Videogame-Project](./assets/Discover-pg.png)
 
